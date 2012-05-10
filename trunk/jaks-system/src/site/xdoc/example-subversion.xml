@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Example: Read Subversion Info</title>
+		<author email="jason@lilypepper.com">Jason Smith</author>
+	</properties>
+	<body>
+		<section name="Example: Read Subversion Info">
+			<source>svn info --xml /home/user/workspace/project/trunk/pom.xml</source>
+			<p>Blah blah blah.</p>
+			<source><![CDATA[final ByteArrayOutputStream out = new ByteArrayOutputStream();
+new Subprocess("svn", "info", "--xml", "/home/user/workspace/project/trunk/pom.xml").call(out);
+final Document info = xml.toDocument(new String(out.toByteArray(), StreamUtil.UTF8));
+System.out.println(xml.toXml(info));]]></source>
+			<p>
+				The output of <tt>svn info --xml</tt>
+				is a UTF-8 encoded XML document. <tt>Subprocess</tt>
+				writes stdout bytes from <tt>svn</tt> to the
+				<tt>ByteArrayOutputStream</tt>.
+			</p>
+		</section>
+	</body>
+</document>

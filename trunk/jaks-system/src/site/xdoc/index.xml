@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>jsaf-system</title>
+		<author email="jason@lilypepper.com">Jason Smith</author>
+	</properties>
+	<body>
+		<section name="jsaf-system">
+			<p>Why is it so difficult to launch a child process with Java? There's something like 
+			half a dozen things you have to configure, and you have to set up service threads for
+			stdout and stderr, and then you have to explicitly wait for it if you want to see if
+			it worked. Honestly, whose use-case does this satisfy?</p>
+			
+			<p>Most times when I am multi-processing, I want to call out to a program, wait for it
+			to complete, and get some data back. And I want the call to block, every time. If I want to run more 
+			than one external process in parallel, I'll use a couple of threads.</p>
+			
+			<p>TODO...</p>
+			
+			<source>$ cat /etc/hosts > ~/copy-of-hosts.txt</source>
+			
+			<p>And here is a version written in Java using classes from <tt>jsaf</tt>.</p>
+			<source><![CDATA[final String CHARSET = StreamUtil.DEFAULT_CHARSET;
+final File home = new File(System.getProperty("user.home")).getCanonicalFile();
+final File copy = new File(home, "copy-of-hosts.txt");
+
+final String hosts = new Subprocess("cat", "/etc/hosts").call(CHARSET);
+StreamUtil.write(hosts, new FileOutputStream(copy), CHARSET);]]></source>
+            <p>Yeah, I know. The Java version is longer. But to us Java geeks, this is absolutely
+            terse. I just ran <tt>cat</tt> in one simple line of code. In one more line, I copied the stdout
+            from <tt>cat</tt> to a file.  And that code is easy to read. If I come back to this in six months,
+            I will still know what this code does. Priceless. This is good enough for day-to-day scripting.</p>
+		</section>
+	</body>
+</document>

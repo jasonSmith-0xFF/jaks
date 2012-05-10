@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+	<properties>
+		<title>Usage</title>
+		<author email="jason@lilypepper.com">Jason Smith</author>
+	</properties>
+	<body>
+		<section name="Usage">
+			<p>
+			<tt>jsaf-quickstart</tt> is a POM-project that will to help get you up and running
+			as quickly as possible. It contains:</p>
+			
+			<ul>
+			    <li><tt>jsaf-maven-plugin</tt> set up to create <tt>zip</tt> and <tt>tar.gz</tt> archives,
+			    and both <tt>Bash</tt> (*nix and Mac) and <tt>Bat</tt> (Windows) launch scripts for your commands.</li>
+			    <li><tt>maven-compiler-plugin</tt> set up for Java 7.</li>
+			    <li><tt>maven-surefire-plugin</tt> with system properties set up to aid testing 
+			    command-line scripts.</li>
+			    <li>A lightweight set of dependencies including the <tt>jsaf</tt> core libraries and some
+			    of the Apache Commons libraries.</li>
+			</ul>
+			<p>The less <a href="http://en.wiktionary.org/wiki/yak_shaving">yak shaving</a> you have to do 
+			before you can actually write meaningful code, the better. Right?</p>
+			
+            <subsection name="Getting Started">
+                <p>Depending on your tools, this setup should take less than five minutes, and possibly as little as one.</p>
+                
+                <p>First, you need to create a new Maven project.  You can do this using Eclipse or another
+                IDE (they all support Maven these days), or you can simply create an empty folder on your file system.</p>
+                
+                <p>Second, create or modify the <tt>pom.xml</tt>. Here is a starter template for you.  You need to 
+                modify a few fields: <tt>groupId</tt>, <tt>artifactId</tt>, <tt>version</tt>, <tt>name</tt>,
+                and <tt>description</tt>.</p>
+                <source><![CDATA[<project 
+    xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.googlecode.jsaf</groupId>
+        <artifactId>jsaf-quickstart</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.your.group</groupId>
+    <artifactId>your-project-id</artifactId>
+    <version>1.2.3-SNAPSHOT</version>
+    <name>Your Project Name</name>
+    <description>A short description of your project.</description>
+    <repositories>
+        <repository>
+            <name>Java Simple Application Framework [Snapshots]</name>
+            <id>jsaf-snapshots</id>
+            <url>http://java-simple-application-framework.googlecode.com/svn/repo/snapshots</url>
+        </repository>
+     </repositories>
+</project>]]></source>
+                <p>Third, you need to create a Java command. I'll use the Java package <tt>org.your.group</tt> for 
+                the example, and you modify it however you like. Create this file: 
+                <tt>./src/main/java/org/your/group/hello.java</tt>. Here is the source:</p>
+                
+                <source><![CDATA[package org.your.group;
+
+import com.googlecode.jsaf.cli.AbstractCommand;
+import com.googlecode.jsaf.cli.JSAFOption;
+
+public class Hello extends AbstractCommand
+{
+    @JSAFOption(name={"w","who"}, description="Who are we saying 'Hello' to?")
+    public String who="World";
+    
+    @Override
+    public void execute() throws Exception 
+    {
+        System.out.println("Hello, " + who + ".");
+    }
+}]]></source>
+                <p>Finally, build it.</p>
+                <source>$ mvn clean install</source>
+                <p>If you set up everything correctly, you should see a <tt>./target</tt> folder in your project,
+                and it should contain <tt>.zip</tt> and <tt>.tar.gz</tt> archive file.</p>
+                
+                <p>Extract it.</p>
+                <source>$ tar -C ~/apps/extract-to -xf ./target/your-project-id-1.2.3-SNAPSHOT.tar.gz</source>
+                
+                <p>Run it.</p>
+                <source>$ ~/apps/extract-to/bin/hello --who 'you intelligent person'</source>
+                <pre>Hello, you intelligent person.</pre>
+            </subsection>
+		</section>
+	</body>
+</document>
