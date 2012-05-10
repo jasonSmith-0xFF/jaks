@@ -1,4 +1,4 @@
-package com.googlecode.jsaf.cli;
+package com.googlecode.jaks.cli;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
