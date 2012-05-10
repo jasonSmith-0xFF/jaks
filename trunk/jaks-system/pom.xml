@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<artifactId>jaks</artifactId>
-		<groupId>com.googlecode.jsaf</groupId>
+		<groupId>com.googlecode.jaks</groupId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
