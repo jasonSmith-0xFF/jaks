@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jsaf.archive.resource;
+package com.googlecode.jaks.archive.resource;
 
 import java.io.IOException;
 import java.io.InputStreamReader;

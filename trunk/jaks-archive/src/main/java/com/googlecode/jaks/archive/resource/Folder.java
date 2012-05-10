@@ -14,11 +14,29 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jsaf.archive.resource;
+package com.googlecode.jaks.archive.resource;
 
-public abstract class AbstractFolder extends AbstractNode
+/**
+ * Folder specification.
+ * @author Jason Smith
+ */
+public class Folder extends AbstractFolder
 {
-	public AbstractFolder(final String path, final long lastModified) 
+	/**
+	 * Constructor. Last modified is set to current time.
+	 * @param path The path.
+	 */
+	public Folder(final String path)
+	{
+		this(path, System.currentTimeMillis());
+	}
+	
+	/**
+	 * Constructor.
+	 * @param path The path.
+	 * @param lastModified The last modified date.
+	 */
+	public Folder(final String path, final long lastModified) 
 	{
 		super(path, lastModified);
 	}

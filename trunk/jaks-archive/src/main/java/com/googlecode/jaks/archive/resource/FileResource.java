@@ -14,38 +14,43 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jsaf.archive.resource;
+package com.googlecode.jaks.archive.resource;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 
-/**
- * Folder backed by a file-system folder.
- * @author Jason Smith
- */
-public class FileFolder extends AbstractFolder
+public class FileResource extends AbstractResource
 {
-	private final File folder;
+	private final File file;
 	
-	/**
-	 * Constructor.
-	 * @param path The path.
-	 * @param folder The folder on the file system.
-	 * @throws FileNotFoundException Folder was not found.
-	 */
-	public FileFolder(final String path, final File folder) throws FileNotFoundException 
+	public FileResource(final String path, final File file) throws FileNotFoundException
 	{
 		super(path, 0L);
-		if(!folder.isDirectory())
+		if(!file.isFile())
 		{
-			throw new FileNotFoundException(folder.getPath());
+			throw new FileNotFoundException(file.getPath());
 		}
-		this.folder = folder;
+		this.file = file;
 	}
 
 	@Override
 	public long getLastModified() 
 	{
-		return folder.lastModified();
+		return file.lastModified();
+	}
+
+	@Override
+	public InputStream getInputStream() throws IOException 
+	{
+		return new FileInputStream(file);
+	}
+
+	@Override
+	public long size() 
+	{
+		return file.length();
 	}
 }

@@ -22,8 +22,9 @@ import java.io.UnsupportedEncodingException;
 
 import org.junit.Test;
 
-import com.googlecode.jsaf.archive.resource.Folder;
-import com.googlecode.jsaf.archive.resource.StringResource;
+import com.googlecode.jaks.archive.ZipArchiver;
+import com.googlecode.jaks.archive.resource.Folder;
+import com.googlecode.jaks.archive.resource.StringResource;
 
 /**
  * Tests for {@link ZipArchiver}.

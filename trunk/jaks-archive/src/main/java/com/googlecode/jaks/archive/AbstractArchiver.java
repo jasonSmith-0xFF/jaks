@@ -14,43 +14,39 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jsaf.archive.resource;
+package com.googlecode.jaks.archive;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.Closeable;
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.Collection;
 
-public class FileResource extends AbstractResource
+import com.googlecode.jaks.archive.resource.AbstractNode;
+import com.googlecode.jaks.archive.resource.UnixModeGuesser;
+
+public abstract class AbstractArchiver implements Closeable
 {
-	private final File file;
+	private final UnixModeGuesser guesser;
+
+	public AbstractArchiver(final UnixModeGuesser guesser)
+	{
+		this.guesser = guesser;
+	}
 	
-	public FileResource(final String path, final File file) throws FileNotFoundException
+	public UnixModeGuesser getUnixModeGuesser()
 	{
-		super(path, 0L);
-		if(!file.isFile())
+		return guesser;
+	}
+	
+	public void addAll(Collection<AbstractNode> nodes) throws Exception
+	{
+		for(AbstractNode node : nodes)
 		{
-			throw new FileNotFoundException(file.getPath());
+			add(node);
 		}
-		this.file = file;
 	}
-
+	
+	public abstract void add(AbstractNode node) throws Exception;
+	
 	@Override
-	public long getLastModified() 
-	{
-		return file.lastModified();
-	}
-
-	@Override
-	public InputStream getInputStream() throws IOException 
-	{
-		return new FileInputStream(file);
-	}
-
-	@Override
-	public long size() 
-	{
-		return file.length();
-	}
+	public abstract void close() throws IOException;
 }

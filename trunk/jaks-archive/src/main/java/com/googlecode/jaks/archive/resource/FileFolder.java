@@ -14,39 +14,38 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jsaf.archive;
+package com.googlecode.jaks.archive.resource;
 
-import java.io.Closeable;
-import java.io.IOException;
-import java.util.Collection;
+import java.io.File;
+import java.io.FileNotFoundException;
 
-import com.googlecode.jsaf.archive.resource.AbstractNode;
-import com.googlecode.jsaf.archive.resource.UnixModeGuesser;
-
-public abstract class AbstractArchiver implements Closeable
+/**
+ * Folder backed by a file-system folder.
+ * @author Jason Smith
+ */
+public class FileFolder extends AbstractFolder
 {
-	private final UnixModeGuesser guesser;
-
-	public AbstractArchiver(final UnixModeGuesser guesser)
-	{
-		this.guesser = guesser;
-	}
+	private final File folder;
 	
-	public UnixModeGuesser getUnixModeGuesser()
+	/**
+	 * Constructor.
+	 * @param path The path.
+	 * @param folder The folder on the file system.
+	 * @throws FileNotFoundException Folder was not found.
+	 */
+	public FileFolder(final String path, final File folder) throws FileNotFoundException 
 	{
-		return guesser;
-	}
-	
-	public void addAll(Collection<AbstractNode> nodes) throws Exception
-	{
-		for(AbstractNode node : nodes)
+		super(path, 0L);
+		if(!folder.isDirectory())
 		{
-			add(node);
+			throw new FileNotFoundException(folder.getPath());
 		}
+		this.folder = folder;
 	}
-	
-	public abstract void add(AbstractNode node) throws Exception;
-	
+
 	@Override
-	public abstract void close() throws IOException;
+	public long getLastModified() 
+	{
+		return folder.lastModified();
+	}
 }
