@@ -14,16 +14,16 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jsaf.archive;
+package com.googlecode.jaks.archive;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.googlecode.jsaf.archive.resource.AbstractNode;
-import com.googlecode.jsaf.archive.resource.FileResource;
-import com.googlecode.jsaf.archive.resource.Folder;
+import com.googlecode.jaks.archive.resource.AbstractNode;
+import com.googlecode.jaks.archive.resource.FileResource;
+import com.googlecode.jaks.archive.resource.Folder;
 
 public final class ArchiveUtil 
 {

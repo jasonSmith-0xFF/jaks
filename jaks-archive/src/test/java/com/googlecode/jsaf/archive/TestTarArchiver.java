@@ -25,8 +25,9 @@ import java.util.zip.GZIPOutputStream;
 import org.apache.tools.bzip2.CBZip2OutputStream;
 import org.junit.Test;
 
-import com.googlecode.jsaf.archive.resource.Folder;
-import com.googlecode.jsaf.archive.resource.StringResource;
+import com.googlecode.jaks.archive.TarArchiver;
+import com.googlecode.jaks.archive.resource.Folder;
+import com.googlecode.jaks.archive.resource.StringResource;
 
 /**
  * Some tests for {@link TarArchiver}.

@@ -14,17 +14,17 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jsaf.archive;
+package com.googlecode.jaks.archive;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import com.googlecode.jsaf.archive.resource.AbstractFolder;
-import com.googlecode.jsaf.archive.resource.AbstractNode;
-import com.googlecode.jsaf.archive.resource.AbstractResource;
-import com.googlecode.jsaf.archive.resource.UnixModeGuesser;
+import com.googlecode.jaks.archive.resource.AbstractFolder;
+import com.googlecode.jaks.archive.resource.AbstractNode;
+import com.googlecode.jaks.archive.resource.AbstractResource;
+import com.googlecode.jaks.archive.resource.UnixModeGuesser;
 import com.googlecode.jsaf.common.io.StreamUtil;
 
 public class FileSystemArchiver extends AbstractArchiver
