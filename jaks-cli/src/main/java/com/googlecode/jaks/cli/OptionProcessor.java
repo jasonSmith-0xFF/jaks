@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jsaf.cli;
+package com.googlecode.jaks.cli;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;

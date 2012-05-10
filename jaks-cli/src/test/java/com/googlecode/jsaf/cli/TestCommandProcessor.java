@@ -25,8 +25,8 @@ import org.apache.commons.collections.CollectionUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.googlecode.jsaf.cli.JSAFOption;
-import com.googlecode.jsaf.cli.OptionProcessor;
+import com.googlecode.jaks.cli.JSAFOption;
+import com.googlecode.jaks.cli.OptionProcessor;
 
 public class TestCommandProcessor extends Assert
 {

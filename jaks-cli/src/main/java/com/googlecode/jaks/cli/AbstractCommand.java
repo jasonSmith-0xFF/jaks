@@ -1,4 +1,4 @@
-package com.googlecode.jsaf.cli;
+package com.googlecode.jaks.cli;
 
 import java.util.Locale;
 
