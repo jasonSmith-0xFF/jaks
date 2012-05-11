@@ -18,8 +18,8 @@ package com.googlecode.jaks.archive.resource;
 
 import java.io.UnsupportedEncodingException;
 
-import com.googlecode.jsaf.common.SquashedException;
-import com.googlecode.jsaf.common.io.StreamUtil;
+import com.googlecode.jaks.common.SquashedException;
+import com.googlecode.jaks.common.io.StreamUtil;
 
 /**
  * A resource with content that is an in-memory UTF-8 encoded text string. This is useful for

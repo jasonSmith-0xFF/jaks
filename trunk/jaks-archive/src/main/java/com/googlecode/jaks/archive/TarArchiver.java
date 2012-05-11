@@ -26,8 +26,8 @@ import com.googlecode.jaks.archive.resource.AbstractFolder;
 import com.googlecode.jaks.archive.resource.AbstractNode;
 import com.googlecode.jaks.archive.resource.AbstractResource;
 import com.googlecode.jaks.archive.resource.UnixModeGuesser;
-import com.googlecode.jsaf.common.io.NonClosingOutputStream;
-import com.googlecode.jsaf.common.io.StreamUtil;
+import com.googlecode.jaks.common.io.NonClosingOutputStream;
+import com.googlecode.jaks.common.io.StreamUtil;
 
 public class TarArchiver extends AbstractArchiver
 {
