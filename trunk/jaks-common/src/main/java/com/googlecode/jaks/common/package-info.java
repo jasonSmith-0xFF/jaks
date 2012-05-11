@@ -17,4 +17,4 @@
 /**
  * General, non-categorized utility classes.
  */
-package com.googlecode.jsaf.common;
+package com.googlecode.jaks.common;
