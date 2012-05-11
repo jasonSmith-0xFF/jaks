@@ -23,7 +23,7 @@ import org.codehaus.plexus.util.StringUtils;
 
 import com.googlecode.jaks.cli.AbstractCommand;
 import com.googlecode.jaks.cli.JSAFMain;
-import com.googlecode.jsaf.common.io.StreamUtil;
+import com.googlecode.jaks.common.io.StreamUtil;
 
 import fmpp.util.FileUtil;
 
