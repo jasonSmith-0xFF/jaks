@@ -5,7 +5,7 @@
 	name="${project.name}">
 	<body>
 		<links>
-			<item name="Java Simple Application Framework"
+			<item name="Java Kick-Start"
 				href="http://code.google.com/p/jaks/" />
 		</links>
 		<menu name="Overview">
