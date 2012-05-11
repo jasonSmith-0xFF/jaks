@@ -30,9 +30,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.googlecode.jsaf.common.io.MultiOutputStream;
-import com.googlecode.jsaf.common.io.SquashedOutputStream;
-import com.googlecode.jsaf.common.io.StreamUtil;
+import com.googlecode.jaks.common.io.MultiOutputStream;
+import com.googlecode.jaks.common.io.SquashedOutputStream;
+import com.googlecode.jaks.common.io.StreamUtil;
 
 /**
  * {@link Subprocess} lets you launch an external process, optionally passing stdin data to 
