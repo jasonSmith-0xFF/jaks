@@ -17,4 +17,4 @@
 /**
  * Utilities that make working with XML in Java simple and easy.
  */
-package com.googlecode.jsaf.common.xml;
+package com.googlecode.jaks.common.xml;

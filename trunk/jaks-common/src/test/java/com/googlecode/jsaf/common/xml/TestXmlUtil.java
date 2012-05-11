@@ -26,6 +26,8 @@ import org.junit.Test;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import com.googlecode.jaks.common.xml.Namespace;
+import com.googlecode.jaks.common.xml.XmlUtil;
 import com.googlecode.jsaf.common.io.StreamUtil;
 
 /**
