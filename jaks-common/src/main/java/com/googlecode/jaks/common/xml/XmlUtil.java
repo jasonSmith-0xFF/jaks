@@ -52,7 +52,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import com.googlecode.jaks.common.SquashedException;
-import com.googlecode.jsaf.common.io.StreamUtil;
+import com.googlecode.jaks.common.io.StreamUtil;
 
 /**
  * <p>A collection of lightweight XML utility methods covering XML-&gt;DOM, DOM-&gt;XML, and XPath.</p>
