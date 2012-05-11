@@ -22,7 +22,7 @@ import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 import com.googlecode.jaks.common.io.StreamUtil;
-import com.googlecode.jsaf.examples.AbstractIT;
+import com.googlecode.jaks.examples.AbstractIT;
 import com.googlecode.jsaf.system.Subprocess;
 
 /**
