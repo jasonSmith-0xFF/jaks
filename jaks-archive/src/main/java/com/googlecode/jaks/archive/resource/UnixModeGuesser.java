@@ -22,7 +22,7 @@ import java.io.LineNumberReader;
 
 import org.apache.tools.zip.UnixStat;
 
-import com.googlecode.jsaf.common.io.StreamUtil;
+import com.googlecode.jaks.common.io.StreamUtil;
 
 /**
  * "Guess" an appropriate Unix mode (permissions) for a resource or folder.
