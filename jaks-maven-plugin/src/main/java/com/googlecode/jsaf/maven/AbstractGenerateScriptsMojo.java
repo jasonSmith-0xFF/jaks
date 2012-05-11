@@ -21,8 +21,8 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.plexus.util.StringUtils;
 
-import com.googlecode.jsaf.cli.AbstractCommand;
-import com.googlecode.jsaf.cli.JSAFMain;
+import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.JSAFMain;
 import com.googlecode.jsaf.common.io.StreamUtil;
 
 import fmpp.util.FileUtil;

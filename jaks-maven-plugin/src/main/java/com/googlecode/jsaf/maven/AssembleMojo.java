@@ -33,13 +33,13 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.tools.bzip2.CBZip2OutputStream;
 
-import com.googlecode.jsaf.archive.ArchiveUtil;
-import com.googlecode.jsaf.archive.FileSystemArchiver;
-import com.googlecode.jsaf.archive.TarArchiver;
-import com.googlecode.jsaf.archive.ZipArchiver;
-import com.googlecode.jsaf.archive.resource.AbstractNode;
-import com.googlecode.jsaf.archive.resource.FileResource;
-import com.googlecode.jsaf.archive.resource.Folder;
+import com.googlecode.jaks.archive.ArchiveUtil;
+import com.googlecode.jaks.archive.FileSystemArchiver;
+import com.googlecode.jaks.archive.TarArchiver;
+import com.googlecode.jaks.archive.ZipArchiver;
+import com.googlecode.jaks.archive.resource.AbstractNode;
+import com.googlecode.jaks.archive.resource.FileResource;
+import com.googlecode.jaks.archive.resource.Folder;
 
 /**
  * Assemble a Java application into an archive.
