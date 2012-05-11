@@ -19,7 +19,7 @@ package com.googlecode.jsaf.examples.test;
 import org.junit.Test;
 
 import com.googlecode.jaks.common.io.StreamUtil;
-import com.googlecode.jsaf.examples.AbstractIT;
+import com.googlecode.jaks.examples.AbstractIT;
 import com.googlecode.jsaf.system.Subprocess;
 import com.googlecode.jsaf.system.SubprocessException;
 

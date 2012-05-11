@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jsaf.examples;
+package com.googlecode.jaks.examples;
 
 import com.googlecode.jaks.cli.AbstractCommand;
 import com.googlecode.jaks.cli.JSAFOption;

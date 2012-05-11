@@ -16,7 +16,7 @@
  */
 package com.googlecode.jsaf.examples.ext;
 
-public class SayHello extends com.googlecode.jsaf.examples.SayHello
+public class SayHello extends com.googlecode.jaks.examples.SayHello
 {
 
 }
