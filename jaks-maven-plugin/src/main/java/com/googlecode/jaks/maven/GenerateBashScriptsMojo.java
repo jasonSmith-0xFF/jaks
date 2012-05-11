@@ -1,4 +1,4 @@
-package com.googlecode.jsaf.maven;
+package com.googlecode.jaks.maven;
 
 
 /**
