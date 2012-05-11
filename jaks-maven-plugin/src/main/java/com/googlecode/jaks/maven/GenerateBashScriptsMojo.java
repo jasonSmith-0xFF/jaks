@@ -2,7 +2,7 @@ package com.googlecode.jaks.maven;
 
 
 /**
- * Generate BASH launch scripts for JSAF commands.
+ * Generate BASH launch scripts for Jaks commands.
  * @author Jason Smith
  * @requiresDependencyResolution compile
  * @goal generate-bash-scripts
@@ -35,9 +35,9 @@ public class GenerateBashScriptsMojo extends AbstractGenerateScriptsMojo
 				"    -Dmaven.groupId=" + quote(project.getGroupId()) + " \\\n" +
 				"    -Dmaven.artifactId=" + quote(project.getArtifactId()) + " \\\n" +
 				"    -Dmaven.version=" + quote(project.getVersion()) + "\\\n" +
-				"    -Djsaf.ui.cols=$(tput cols || echo 0) \\\n" +
-				"    -Djsaf.launch.script=$(dirname $0)/$(basename $0) \\\n" +
-				"    -Djsaf.command.class=" + commandClass.getName() + " \\\n" + 
+				"    -Djaks.ui.cols=$(tput cols || echo 0) \\\n" +
+				"    -Djaks.launch.script=$(dirname $0)/$(basename $0) \\\n" +
+				"    -Djaks.command.class=" + commandClass.getName() + " \\\n" + 
 				"    " + launcher.getName() + " \\\n" +
 				"    \"$@\"";
 	}

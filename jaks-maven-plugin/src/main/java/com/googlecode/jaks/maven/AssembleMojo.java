@@ -48,7 +48,7 @@ import com.googlecode.jaks.archive.resource.Folder;
  * @goal assemble
  * @phase package
  */
-public class AssembleMojo extends AbstractJSAFMojo
+public class AssembleMojo extends AbstractJaksMojo
 {
 	/**
 	 * For the ZIP archive (if specified in {@link #atypes}, 0 for no compression, 1 for fastest, 9 for smallest.

@@ -25,7 +25,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.googlecode.jaks.cli.JSAFOption;
+import com.googlecode.jaks.cli.JaksOption;
 import com.googlecode.jaks.cli.OptionProcessor;
 
 public class TestCommandProcessor extends Assert
@@ -34,7 +34,7 @@ public class TestCommandProcessor extends Assert
 
 	public static class ExampleCommand1 
 	{
-		@JSAFOption(name={"t","testbool"}, description="Test boolean.")
+		@JaksOption(name={"t","testbool"}, description="Test boolean.")
 		public boolean testBool;
 	}
 	
@@ -49,7 +49,7 @@ public class TestCommandProcessor extends Assert
 	
 	public static class ExampleCommand2 
 	{
-		@JSAFOption(name={"s","teststr"}, description="Test string.")
+		@JaksOption(name={"s","teststr"}, description="Test string.")
 		public String testString;
 	}
 	
@@ -63,7 +63,7 @@ public class TestCommandProcessor extends Assert
 	
 	public static class ExampleCommand3 
 	{
-		@JSAFOption(name={"s","teststr"}, description="Test string.", separator=',')
+		@JaksOption(name={"s","teststr"}, description="Test string.", separator=',')
 		public String[] testString;
 	}
 	
@@ -76,7 +76,7 @@ public class TestCommandProcessor extends Assert
 	
 	public static class ExampleCommand4 
 	{
-		@JSAFOption(name={"s","teststr"}, description="Test string.", separator=',')
+		@JaksOption(name={"s","teststr"}, description="Test string.", separator=',')
 		public Set<String> testString;
 	}
 
@@ -90,7 +90,7 @@ public class TestCommandProcessor extends Assert
 
 	public static class ExampleCommand5 
 	{
-		@JSAFOption(name={"i","testint"}, description="Test int.", separator=',')
+		@JaksOption(name={"i","testint"}, description="Test int.", separator=',')
 		public LinkedList<Integer> testInt;
 	}
 
@@ -104,7 +104,7 @@ public class TestCommandProcessor extends Assert
 	
 	public static class ExampleCommand6 
 	{
-		@JSAFOption(name={"i","testint"}, description="Test int.", separator=',')
+		@JaksOption(name={"i","testint"}, description="Test int.", separator=',')
 		public List<Integer> testInt;
 	}
 	

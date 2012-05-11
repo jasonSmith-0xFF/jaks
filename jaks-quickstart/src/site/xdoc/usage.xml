@@ -8,16 +8,16 @@
 	<body>
 		<section name="Usage">
 			<p>
-			<tt>jsaf-quickstart</tt> is a POM-project that will to help get you up and running
+			<tt>jaks-quickstart</tt> is a POM-project that will to help get you up and running
 			as quickly as possible. It contains:</p>
 			
 			<ul>
-			    <li><tt>jsaf-maven-plugin</tt> set up to create <tt>zip</tt> and <tt>tar.gz</tt> archives,
+			    <li><tt>jaks-maven-plugin</tt> set up to create <tt>zip</tt> and <tt>tar.gz</tt> archives,
 			    and both <tt>Bash</tt> (*nix and Mac) and <tt>Bat</tt> (Windows) launch scripts for your commands.</li>
 			    <li><tt>maven-compiler-plugin</tt> set up for Java 7.</li>
 			    <li><tt>maven-surefire-plugin</tt> with system properties set up to aid testing 
 			    command-line scripts.</li>
-			    <li>A lightweight set of dependencies including the <tt>jsaf</tt> core libraries and some
+			    <li>A lightweight set of dependencies including the <tt>jaks</tt> core libraries and some
 			    of the Apache Commons libraries.</li>
 			</ul>
 			<p>The less <a href="http://en.wiktionary.org/wiki/yak_shaving">yak shaving</a> you have to do 
@@ -37,8 +37,8 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>com.googlecode.jsaf</groupId>
-        <artifactId>jsaf-quickstart</artifactId>
+        <groupId>com.googlecode.jaks</groupId>
+        <artifactId>jaks-quickstart</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -50,7 +50,7 @@
     <repositories>
         <repository>
             <name>Java Simple Application Framework [Snapshots]</name>
-            <id>jsaf-snapshots</id>
+            <id>jaks-snapshots</id>
             <url>http://java-simple-application-framework.googlecode.com/svn/repo/snapshots</url>
         </repository>
      </repositories>
@@ -61,12 +61,12 @@
                 
                 <source><![CDATA[package org.your.group;
 
-import com.googlecode.jsaf.cli.AbstractCommand;
-import com.googlecode.jsaf.cli.JSAFOption;
+import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.JaksOption;
 
 public class Hello extends AbstractCommand
 {
-    @JSAFOption(name={"w","who"}, description="Who are we saying 'Hello' to?")
+    @JaksOption(name={"w","who"}, description="Who are we saying 'Hello' to?")
     public String who="World";
     
     @Override

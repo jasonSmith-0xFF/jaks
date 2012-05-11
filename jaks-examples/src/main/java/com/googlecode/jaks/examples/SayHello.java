@@ -17,11 +17,11 @@
 package com.googlecode.jaks.examples;
 
 import com.googlecode.jaks.cli.AbstractCommand;
-import com.googlecode.jaks.cli.JSAFOption;
+import com.googlecode.jaks.cli.JaksOption;
 
 public class SayHello extends AbstractCommand
 {
-	@JSAFOption(name={"w","who"}, description="Who are we saying 'Hello' to?")
+	@JaksOption(name={"w","who"}, description="Who are we saying 'Hello' to?")
 	public String who="World";
 	
 	@Override

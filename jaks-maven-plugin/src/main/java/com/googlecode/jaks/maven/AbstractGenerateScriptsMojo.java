@@ -22,7 +22,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.plexus.util.StringUtils;
 
 import com.googlecode.jaks.cli.AbstractCommand;
-import com.googlecode.jaks.cli.JSAFMain;
+import com.googlecode.jaks.cli.JaksMain;
 import com.googlecode.jaks.common.io.StreamUtil;
 
 import fmpp.util.FileUtil;
@@ -31,14 +31,14 @@ import fmpp.util.FileUtil;
  * Generate launch scripts.
  * @author Jason Smith
  */
-public abstract class AbstractGenerateScriptsMojo extends AbstractJSAFMojo
+public abstract class AbstractGenerateScriptsMojo extends AbstractJaksMojo
 {
 	/**
 	 * The command launcher.
-	 * <br/><strong>Default</strong>: <tt>{@link JSAFMain}</tt>
+	 * <br/><strong>Default</strong>: <tt>{@link JaksMain}</tt>
 	 * @parameter
 	 */
-	protected final Class<?> launcher = JSAFMain.class;
+	protected final Class<?> launcher = JaksMain.class;
 	
 	/**
 	 * Location of launch-scripts and any other executables.
@@ -132,7 +132,7 @@ public abstract class AbstractGenerateScriptsMojo extends AbstractJSAFMojo
 		final URLClassLoader cl = new URLClassLoader(urls.toArray(new URL[urls.size()]), Thread.currentThread().getContextClassLoader());
 		
 		final List<Class<?>> commandClasses = new ArrayList<Class<?>>();
-		for(final URL commandClassDocument : Collections.list(cl.getResources("META-INF/jsaf/command-classes.txt")))
+		for(final URL commandClassDocument : Collections.list(cl.getResources("META-INF/jaks/command-classes.txt")))
 		{
 			try(final LineNumberReader reader = new LineNumberReader(new InputStreamReader(commandClassDocument.openStream(), StreamUtil.UTF8)))
 			{
