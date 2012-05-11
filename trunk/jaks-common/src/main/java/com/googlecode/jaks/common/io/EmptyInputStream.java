@@ -14,19 +14,24 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jsaf.common.io;
+package com.googlecode.jaks.common.io;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
 /**
- * {@link OutputStream} that squashes (ignores) the bytes written to it.
+ * An empty {@link InputStream}.
  * @author Jason Smith
  */
-public class SquashedOutputStream extends OutputStream
+public class EmptyInputStream extends ByteArrayInputStream
 {
-	@Override
-	public void write(int b) throws IOException 
+	private static final byte[] EMPTY_BYTE_ARRAY = new byte[0];
+	
+	/**
+	 * Default constructor.
+	 */
+	public EmptyInputStream() 
 	{
+		super(EMPTY_BYTE_ARRAY);
 	}
 }
