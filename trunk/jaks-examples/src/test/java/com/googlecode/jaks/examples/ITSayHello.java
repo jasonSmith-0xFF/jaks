@@ -18,8 +18,8 @@ package com.googlecode.jaks.examples;
 
 import org.junit.Test;
 
-import com.googlecode.jsaf.system.Subprocess;
-import com.googlecode.jsaf.system.SubprocessException;
+import com.googlecode.jaks.system.Subprocess;
+import com.googlecode.jaks.system.SubprocessException;
 
 /**
  * Demonstrates <tt>sayhello</tt>.

@@ -39,8 +39,8 @@ import com.googlecode.jaks.common.io.FileUtil;
 import com.googlecode.jaks.common.io.SquashedOutputStream;
 import com.googlecode.jaks.common.io.StreamUtil;
 import com.googlecode.jaks.common.xml.XmlUtil;
-import com.googlecode.jsaf.system.Subprocess;
-import com.googlecode.jsaf.system.SubprocessException;
+import com.googlecode.jaks.system.Subprocess;
+import com.googlecode.jaks.system.SubprocessException;
 
 /**
  * When run against one or more Subversion-managed folders, corrects the <tt>svn:mime-type</tt> property
