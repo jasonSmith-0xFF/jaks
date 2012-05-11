@@ -1,0 +1,21 @@
+#summary All about submitting code, documentation, etc., to this project.
+
+= Code Submissions =
+
+This is an open-source project. In order to avoid certain legal entanglements regarding ownership, and in keeping with the highest moral standards, we ask that contributors follow some simple rules. 
+
+
+== The Rules ==
+
+Before submitting anything to this project, please ensure:
+  * The submission was written by you.
+  * No one else can claim ownership of any portion of the submission. This includes, but may not be limited to:
+    * Copyright.
+    * Proprietary intellectual property.
+  * The submission was created on _personally owned hardware_ (or equivalent) using _personally owned software_ (or equivalent). See previous rule.
+  * In donating the submission, you are giving up all future claims on the submission. Or in other words, no take-backs.
+  * You agree with the LGPL license. You are allowing others to use your code for either free software (free as in speech) or for commercial software.
+
+== Submitting Code ==
+
+If you have something you'd like to submit, please post a message on [https://groups.google.com/forum/?hl=en&fromgroups#!forum/java-simple-application-framework-discuss our discussion forum].
