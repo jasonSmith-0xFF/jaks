@@ -2,21 +2,21 @@
 <document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 	<properties>
-		<title>jsaf-quickstart</title>
+		<title>jaks-quickstart</title>
 		<author email="jason@lilypepper.com">Jason Smith</author>
 	</properties>
 	<body>
-		<section name="jsaf-quickstart">
-			<p><tt>jsaf-quickstart</tt> is a parent-POM project that will get you done with project
+		<section name="jaks-quickstart">
+			<p><tt>jaks-quickstart</tt> is a parent-POM project that will get you done with project
 			setup and into writing code within minutes. It contains:</p>
             
             <ul>
-                <li><tt>jsaf-maven-plugin</tt> set up to create <tt>zip</tt> and <tt>tar.gz</tt> archives,
+                <li><tt>jaks-maven-plugin</tt> set up to create <tt>zip</tt> and <tt>tar.gz</tt> archives,
                 and both <tt>Bash</tt> (*nix and Mac) and <tt>Bat</tt> (Windows) launch scripts for your commands.</li>
                 <li><tt>maven-compiler-plugin</tt> set up for Java 7.</li>
                 <li><tt>maven-surefire-plugin</tt> with system properties set up to aid testing 
                 command-line scripts.</li>
-                <li>A lightweight set of dependencies including the <tt>jsaf</tt> core libraries and some
+                <li>A lightweight set of dependencies including the <tt>jaks</tt> core libraries and some
                 of the Apache Commons libraries.</li>
             </ul>
             <p>See <a href="./usage.html">Usage</a> for more information.</p>

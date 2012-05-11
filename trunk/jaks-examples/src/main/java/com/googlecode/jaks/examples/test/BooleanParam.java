@@ -17,7 +17,7 @@
 package com.googlecode.jaks.examples.test;
 
 import com.googlecode.jaks.cli.AbstractCommand;
-import com.googlecode.jaks.cli.JSAFOption;
+import com.googlecode.jaks.cli.JaksOption;
 
 /**
  * Takes a single boolean parameter ({@code --test}); 
@@ -29,7 +29,7 @@ public class BooleanParam extends AbstractCommand
 	/**
 	 * The {@code --test} flag.
 	 */
-	@JSAFOption(name="test", description="Test for a boolean.")
+	@JaksOption(name="test", description="Test for a boolean.")
 	public boolean test;
 	
 	@Override

@@ -2,11 +2,11 @@
 <document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 	<properties>
-		<title>jsaf-system</title>
+		<title>jaks-system</title>
 		<author email="jason@lilypepper.com">Jason Smith</author>
 	</properties>
 	<body>
-		<section name="jsaf-system">
+		<section name="jaks-system">
 			<p>Why is it so difficult to launch a child process with Java? There's something like 
 			half a dozen things you have to configure, and you have to set up service threads for
 			stdout and stderr, and then you have to explicitly wait for it if you want to see if
@@ -20,7 +20,7 @@
 			
 			<source>$ cat /etc/hosts > ~/copy-of-hosts.txt</source>
 			
-			<p>And here is a version written in Java using classes from <tt>jsaf</tt>.</p>
+			<p>And here is a version written in Java using classes from <tt>jaks</tt>.</p>
 			<source><![CDATA[final String CHARSET = StreamUtil.DEFAULT_CHARSET;
 final File home = new File(System.getProperty("user.home")).getCanonicalFile();
 final File copy = new File(home, "copy-of-hosts.txt");

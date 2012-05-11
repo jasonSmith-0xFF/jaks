@@ -17,11 +17,11 @@
 package com.googlecode.jaks.cli;
 
 
-public class JSAFMain 
+public class JaksMain 
 {
 	public static void main(String... args) throws Exception
 	{
-		final Class<?> commandClass = Class.forName(System.getProperty("jsaf.command.class"), true, JSAFMain.class.getClassLoader());
+		final Class<?> commandClass = Class.forName(System.getProperty("jaks.command.class"), true, JaksMain.class.getClassLoader());
 		AbstractCommand command = (AbstractCommand)commandClass.newInstance();
 		
 		final OptionProcessor proc = new OptionProcessor();

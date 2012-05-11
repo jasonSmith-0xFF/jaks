@@ -36,14 +36,14 @@ import javax.tools.Diagnostic.Kind;
 import javax.tools.StandardLocation;
 
 /**
- * Catalogs classes that are annotated with {@link JSAFCommand} and 
- * puts this information into the JAR at <tt>META-INF/jsaf/command-classes.txt</tt>.
+ * Catalogs classes that are annotated with {@link JaksCommand} and 
+ * puts this information into the JAR at <tt>META-INF/jaks/command-classes.txt</tt>.
  * This supports automated discovery of command classes. 
  * @author Jason Smith
  */
-@SupportedAnnotationTypes(value={"com.googlecode.jsaf.cli.JSAFCommand"})
+@SupportedAnnotationTypes(value={"com.googlecode.jaks.cli.JaksCommand"})
 @SupportedSourceVersion(SourceVersion.RELEASE_7)
-public class JSAFCommandAnnotationProcessor extends AbstractProcessor
+public class JaksCommandAnnotationProcessor extends AbstractProcessor
 {
 	private ProcessingEnvironment processingEnv = null;
 
@@ -61,9 +61,9 @@ public class JSAFCommandAnnotationProcessor extends AbstractProcessor
 	{
 		final List<String> annotatedClasses = new ArrayList<String>();
 		
-		for(final Element element : roundEnv.getElementsAnnotatedWith(JSAFCommand.class))
+		for(final Element element : roundEnv.getElementsAnnotatedWith(JaksCommand.class))
 		{
-			if(element.getKind() == ElementKind.CLASS && element.getAnnotation(JSAFCommand.class) != null)
+			if(element.getKind() == ElementKind.CLASS && element.getAnnotation(JaksCommand.class) != null)
 			{
 				TypeElement typeElement = (TypeElement)element;
 				if(typeElement.getModifiers().contains(Modifier.PUBLIC)
@@ -80,7 +80,7 @@ public class JSAFCommandAnnotationProcessor extends AbstractProcessor
 					processingEnv.getFiler().createResource(
 							StandardLocation.CLASS_OUTPUT, 
 							"", 
-							"META-INF/jsaf/command-classes.txt").openWriter()))
+							"META-INF/jaks/command-classes.txt").openWriter()))
 			{
 				for(final String annotatedClass : annotatedClasses)
 				{

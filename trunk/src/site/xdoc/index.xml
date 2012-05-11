@@ -2,18 +2,18 @@
 <document xmlns="http://maven.apache.org/XDOC/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 	<properties>
-		<title>The Java Simple Application Framework (jsaf)</title>
+		<title>Java Kick-Start (jaks)</title>
 		<author email="jason@lilypepper.com">Jason Smith</author>
 	</properties>
 	<body>
-		<section name="The Java Simple Application Framework (jsaf)">
+		<section name="Java Kick-Start (jaks)">
 			<p>It's entirely too difficult to create a standalone application with Java. I mean, 
 			it's moderately painful to create an app with standard POSIX-compliant command-line options, 
 			help available from the command-line, man pages, and support for i18n. This stuff ought to be 
 			easy. Somebody else should take care of it so you can just concentrate on writing a great app. 
 			Am I right?</p>
 
-            <p>JSAF is still pre-alpha. When completed, it will provide a simplified path for creating 
+            <p>Jaks is still pre-alpha. When completed, it will provide a simplified path for creating 
             professional standalone Java applications. The plan is to make it easy to handle command-line 
             options, with assistance in developing help and documentation (man pages, Maven site docs). 
             I'd also like to simplify creating installation packages for Debian/Ubuntu at first, and 
@@ -21,12 +21,12 @@
             
             <p>The code for this project is still under initial development, and, well, you know how the
             documentation always lags behind even that. For now, take a look in 
-            <a href="./jsaf-examples/index.html">jsaf-examples</a> if you are curious.
+            <a href="./jaks-examples/index.html">jaks-examples</a> if you are curious.
             Since the documentation is incomplete, it would probably help most to look at the 
-            <a href="http://code.google.com/p/java-simple-application-framework/source/browse/#svn%2Ftrunk%2Fjsaf-examples%2Fsrc%2Fmain%2Fjava%2Fcom%2Fgooglecode%2Fjsaf%2Fexamples">source code</a>. 
+            <a href="http://code.google.com/p/java-simple-application-framework/source/browse/#svn%2Ftrunk%2Fjaks-examples%2Fsrc%2Fmain%2Fjava%2Fcom%2Fgooglecode%2Fjaks%2Fexamples">source code</a>. 
             </p>
             
-            <p><a href="./jsaf-quickstart/usage.html">Just show me how to get started.</a></p>
+            <p><a href="./jaks-quickstart/usage.html">Just show me how to get started.</a></p>
 		</section>
 	</body>
 </document>

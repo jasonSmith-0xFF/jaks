@@ -8,7 +8,7 @@ import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.plexus.util.StringUtils;
 
 /**
- * Generate Windows BAT launch scripts for JSAF commands.
+ * Generate Windows BAT launch scripts for Jaks commands.
  * @author Jason Smith
  * @requiresDependencyResolution compile
  * @goal generate-windows-scripts
@@ -27,9 +27,9 @@ public class GenerateWindowsScriptsMojo extends AbstractGenerateScriptsMojo
 				quote("-Dmaven.groupId=" + project.getGroupId()) + " " + 
 				quote("-Dmaven.artifactId=" + project.getArtifactId()) + " " +
 				quote("-Dmaven.version=" + project.getVersion()) + " " +
-				"-Djsaf.ui.cols=0 " + 
-				quote("-Djsaf.launch.script=%~f0") + " " +
-				quote("-Djsaf.command.class=" + commandClass.getName()) + " " +
+				"-Djaks.ui.cols=0 " + 
+				quote("-Djaks.launch.script=%~f0") + " " +
+				quote("-Djaks.command.class=" + commandClass.getName()) + " " +
 				launcher.getName() + " " +
 				"%* \r\n" +
 				"SET errlev=%ERRORLEVEL% \r\n" +

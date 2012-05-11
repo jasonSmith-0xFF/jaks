@@ -2,7 +2,7 @@ package com.googlecode.jaks.cli;
 
 import java.util.Locale;
 
-@JSAFCommand
+@JaksCommand
 public abstract class AbstractCommand 
 {
 	/**

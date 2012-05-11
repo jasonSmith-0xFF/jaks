@@ -9,7 +9,7 @@ import java.util.Set;
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.plugin.AbstractMojo;
 
-public abstract class AbstractJSAFMojo extends AbstractMojo
+public abstract class AbstractJaksMojo extends AbstractMojo
 {
 	/**
 	 * The current project.

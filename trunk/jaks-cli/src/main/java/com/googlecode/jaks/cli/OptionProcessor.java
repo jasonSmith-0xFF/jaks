@@ -61,7 +61,7 @@ public class OptionProcessor
 		
 		for(final Field field : command.getClass().getFields())
 		{
-			final JSAFOption option = field.getAnnotation(JSAFOption.class);
+			final JaksOption option = field.getAnnotation(JaksOption.class);
 			if(option != null)
 			{
 				initializeAnOption(optionParser, field, option.name(), option.description(), option.separator(), option.required());
@@ -134,14 +134,14 @@ public class OptionProcessor
 	{
 		for(final Field field : command.getClass().getFields())
 		{
-			final JSAFOption option = field.getAnnotation(JSAFOption.class);
+			final JaksOption option = field.getAnnotation(JaksOption.class);
 			if(option != null)
 			{
 				processOptionAnnotation(command, field, optionSet, option.name());
 			}
 			else
 			{
-				final JSAFNonOptionArguments nonOption = field.getAnnotation(JSAFNonOptionArguments.class);
+				final JaksNonOptionArguments nonOption = field.getAnnotation(JaksNonOptionArguments.class);
 				if(nonOption != null)
 				{
 					processNonOptionArgumentsAnnotation(command, field, optionSet);
