@@ -47,11 +47,11 @@
 			    <repository>
 			        <id>local-repo</id>
 			        <name>Local Repository</name>
-			        <url>file:///${user.home}/jaks-repo</url>
+			        <url>file:///${user.home}/jaks-repo/snapshots</url>
 			    </repository>
 				<site>
 					<id>local-site</id>
-					<url>file:///${user.home}/jaks-site</url>
+					<url>file:///${user.home}/jaks-site/trunk</url>
 				</site>
 			</distributionManagement>
         </profile>
