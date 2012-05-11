@@ -33,8 +33,8 @@ import java.util.Map;
 
 import org.w3c.dom.Document;
 
-import com.googlecode.jsaf.cli.AbstractCommand;
-import com.googlecode.jsaf.cli.JSAFNonOptionArguments;
+import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.JSAFNonOptionArguments;
 import com.googlecode.jsaf.common.io.FileUtil;
 import com.googlecode.jsaf.common.io.SquashedOutputStream;
 import com.googlecode.jsaf.common.io.StreamUtil;

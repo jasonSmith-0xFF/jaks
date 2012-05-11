@@ -19,8 +19,8 @@ package com.googlecode.jsaf.examples.test;
 import java.io.File;
 import java.util.List;
 
-import com.googlecode.jsaf.cli.AbstractCommand;
-import com.googlecode.jsaf.cli.JSAFNonOptionArguments;
+import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.JSAFNonOptionArguments;
 
 /**
  * This command demonstrates a common use of non-option arguments - a list of files.
