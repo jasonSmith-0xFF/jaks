@@ -16,8 +16,8 @@
  */
 package com.googlecode.jsaf.examples.test;
 
-import com.googlecode.jsaf.cli.AbstractCommand;
-import com.googlecode.jsaf.cli.JSAFOption;
+import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.JSAFOption;
 
 /**
  * Takes a single boolean parameter ({@code --test}); 

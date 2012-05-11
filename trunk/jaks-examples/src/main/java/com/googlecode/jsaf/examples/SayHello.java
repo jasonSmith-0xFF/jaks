@@ -16,8 +16,8 @@
  */
 package com.googlecode.jsaf.examples;
 
-import com.googlecode.jsaf.cli.AbstractCommand;
-import com.googlecode.jsaf.cli.JSAFOption;
+import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.JSAFOption;
 
 public class SayHello extends AbstractCommand
 {
