@@ -21,8 +21,8 @@ import org.junit.Test;
 import com.googlecode.jaks.common.io.StreamUtil;
 import com.googlecode.jaks.examples.AbstractIT;
 import com.googlecode.jaks.examples.test.BooleanParam;
-import com.googlecode.jsaf.system.Subprocess;
-import com.googlecode.jsaf.system.SubprocessException;
+import com.googlecode.jaks.system.Subprocess;
+import com.googlecode.jaks.system.SubprocessException;
 
 /**
  * Tests for {@link BooleanParam}.
