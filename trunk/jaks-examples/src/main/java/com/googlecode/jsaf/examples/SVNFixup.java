@@ -16,12 +16,12 @@
  */
 package com.googlecode.jsaf.examples;
 
-import static com.googlecode.jsaf.common.io.Filter.and;
-import static com.googlecode.jsaf.common.io.Filter.file;
-import static com.googlecode.jsaf.common.io.Filter.hidden;
-import static com.googlecode.jsaf.common.io.Filter.mavenAware;
-import static com.googlecode.jsaf.common.io.Filter.not;
-import static com.googlecode.jsaf.common.io.Filter.svnAware;
+import static com.googlecode.jaks.common.io.Filter.and;
+import static com.googlecode.jaks.common.io.Filter.file;
+import static com.googlecode.jaks.common.io.Filter.hidden;
+import static com.googlecode.jaks.common.io.Filter.mavenAware;
+import static com.googlecode.jaks.common.io.Filter.not;
+import static com.googlecode.jaks.common.io.Filter.svnAware;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -35,10 +35,10 @@ import org.w3c.dom.Document;
 
 import com.googlecode.jaks.cli.AbstractCommand;
 import com.googlecode.jaks.cli.JSAFNonOptionArguments;
-import com.googlecode.jsaf.common.io.FileUtil;
-import com.googlecode.jsaf.common.io.SquashedOutputStream;
-import com.googlecode.jsaf.common.io.StreamUtil;
-import com.googlecode.jsaf.common.xml.XmlUtil;
+import com.googlecode.jaks.common.io.FileUtil;
+import com.googlecode.jaks.common.io.SquashedOutputStream;
+import com.googlecode.jaks.common.io.StreamUtil;
+import com.googlecode.jaks.common.xml.XmlUtil;
 import com.googlecode.jsaf.system.Subprocess;
 import com.googlecode.jsaf.system.SubprocessException;
 
