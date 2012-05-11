@@ -55,6 +55,6 @@
         </dependency>
 	</dependencies>
 	<scm>
-        <url>http://code.google.com/p/java-simple-application-framework/source</url>
+        <url>http://code.google.com/p/jaks/source</url>
     </scm>
 </project>

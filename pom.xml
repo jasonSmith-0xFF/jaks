@@ -25,7 +25,7 @@
 	<packaging>pom</packaging>
 	<description>-</description>
 	<inceptionYear>2012</inceptionYear>
-    <url>http://java-simple-application-framework.googlecode.com/svn/site/trunk/</url>
+    <url>http://jaks.googlecode.com/svn/site/trunk/</url>
     
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -160,10 +160,10 @@
 		</plugins>
 	</build>
 	<scm>
-		<connection>scm:svn:http://java-simple-application-framework.googlecode.com/svn/trunk/</connection>
-		<developerConnection>scm:svn:https://java-simple-application-framework.googlecode.com/svn/trunk/</developerConnection>
+		<connection>scm:svn:http://jaks.googlecode.com/svn/trunk/</connection>
+		<developerConnection>scm:svn:https://jaks.googlecode.com/svn/trunk/</developerConnection>
 		<tag>HEAD</tag>
-		<url>http://code.google.com/p/java-simple-application-framework/source</url>
+		<url>http://code.google.com/p/jaks/source</url>
 	</scm>
 	<licenses>
 		<license>
@@ -177,7 +177,7 @@
 			<id>jason</id>
 			<name>Jason Smith</name>
 			<email>jason*at*lilypepper.com</email>
-			<organizationUrl>http://code.google.com/p/java-simple-application-framework/</organizationUrl>
+			<organizationUrl>http://code.google.com/p/jaks/</organizationUrl>
 			<roles>
 				<role>Developer</role>
 			</roles>

@@ -51,7 +51,7 @@
         <repository>
             <name>Java Simple Application Framework [Snapshots]</name>
             <id>jaks-snapshots</id>
-            <url>http://java-simple-application-framework.googlecode.com/svn/repo/snapshots</url>
+            <url>http://jaks.googlecode.com/svn/repo/snapshots</url>
         </repository>
      </repositories>
 </project>]]></source>
