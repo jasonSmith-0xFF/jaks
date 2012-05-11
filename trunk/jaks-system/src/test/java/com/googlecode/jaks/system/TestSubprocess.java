@@ -14,11 +14,13 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jsaf.system;
+package com.googlecode.jaks.system;
 
 import org.apache.commons.lang.SystemUtils;
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.googlecode.jaks.system.Subprocess;
 
 public class TestSubprocess extends Assert
 {
