@@ -49,7 +49,7 @@
     <description>A short description of your project.</description>
     <repositories>
         <repository>
-            <name>Java Simple Application Framework [Snapshots]</name>
+            <name>Jaks [Snapshots]</name>
             <id>jaks-snapshots</id>
             <url>http://jaks.googlecode.com/svn/repo/snapshots</url>
         </repository>
