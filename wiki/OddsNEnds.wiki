@@ -1,0 +1,51 @@
+#summary Various random bits.
+
+= Odds & Ends =
+
+Home to various things that, if I don't write them down, are likely to be forgotten in time. Yet they don't necessarily warrant a full wiki page of their own.
+
+
+== Site Doc ==
+_One of my Subversion clients is corrupting my configuration. So to compensate, I wrote `SVNFixup.java` to manually set all the correct mimetypes. It's in the `examples` project._
+
+Here is how I set up Subversion to serve up my Maven site-docs. I think this is common for _googlecode_ sites, but the explanations I found were lacking some of these details.
+
+First, I set up `~/.subversion/config` like this:
+
+{{{
+[miscellany]
+enable-auto-props = yes
+
+[auto-props]
+*.png = svn:mime-type=image/png
+*.jpg = svn:mime-type=image/jpeg
+*.gif = svn:mime-type=image/gif
+*.htm = svn:mime-type=text/html
+*.html = svn:mime-type=text/html
+*.css = svn:mime-type=text/css
+*.js = svn:mime-type=text/javascript
+}}}
+
+I set up the build to deploy site documentation to `~/jsaf-site/`, and then attached that directory to my subversion repository at [http://java-simple-application-framework.googlecode.com/svn/site/trunk/ http://java-simple-application-framework.googlecode.com/svn/site/trunk/]. If you click the link, you
+can then select `index.html` to open the site-docs.
+
+After the build, I had to `~/jsaf/site:$ svn add *` before I could commit.
+
+== Maven Repository ==
+Continuing from the previous section, I also set up a Maven snapshots repository at [http://java-simple-application-framework.googlecode.com/svn/repo/snapshots/ http://java-simple-application-framework.googlecode.com/svn/repos/snapshots/]. This makes it relatively easy for people to try out the software without having to build it manually.
+
+I added these lines to `~/.subversion/config`:
+{{{
+*.xml = svn:mime-type=text/xml
+*.md5 = svn:mime-type=text/plain
+*.sha1 = svn:mime-type=text/plain
+*.pom = svn:mime-type=text/xml
+*.jar = svn:mime-type=application/java-archive
+}}}
+Since I can create artifact types other than JARs, this list will likely expand in the future.
+
+== Command-Line Help for the `jsaf-maven-plugin` ==
+Help for the plugin from the command-line:
+{{{
+$ mvn help:describe -Dplugin=com.googlecode.jsaf:jsaf-maven-plugin -Ddetail
+}}}
