@@ -1,0 +1,289 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>
+    jaks:assemble</title>
+    <link rel="stylesheet" href="./css/maven-theme.css" type="text/css" />
+    <link rel="stylesheet" href="./css/maven-base.css" type="text/css"/>
+    <link rel="stylesheet" href="./css/prettify.css" type="text/css"/>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+    <script type="text/javascript" src="./js/prettify.js"></script>
+    <script type="text/javascript" src="./js/niftycube.js"></script>
+    <script type="text/javascript">
+        window.onload=function() {
+            Nifty("div\#wrapper", "big");
+            Nifty("div#breadcrumbs", "small");
+            Nifty("div\#navcolumn", "small");
+            Nifty("div.source", "medium");
+            prettyPrint();
+        }
+    </script>
+        <meta name="Date-Revision-yyyymmdd" content="20120510" />
+      </head>
+  <body>
+    <div id="wrapper">
+        <div id="banner">
+                        <div id="bannerLeft">
+    
+            jaks-maven-plugin
+    
+            </div>
+                            <div class="clear">
+            <hr/>
+          </div>
+        </div>
+        <div id="breadcrumbs">
+              
+  
+
+  
+    
+    
+  
+    
+            <div class="xleft">
+        <span id="publishDate">Last Published: 2012-05-10</span>
+                  &nbsp;| <span id="projectVersion">Version: 0.0.1-SNAPSHOT</span>
+                      </div>
+                <div class="xright">            <a href="http://code.google.com/p/jaks/" class="externalLink">Java Simple Application Framework</a>
+            
+  
+
+  
+    
+    
+  
+    
+  </div>
+          <div class="clear">
+            <hr/>
+          </div>
+        </div>
+        <div id="leftColumn">
+          <div id="navcolumn">
+               
+  
+
+  
+    
+    
+  
+    
+                       <h5>Parent Project</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="../index.html">jaks</a>
+          </li>
+          </ul>
+              <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Introduction</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+                    
+                  
+                  
+                  
+                  
+                  
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+                    
+                  
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                               <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img class="poweredBy"
+                 alt="Built by Maven"
+                 src="./images/logos/maven-feather.png"
+                 width="90"
+                 height="30"
+                 border="1" />
+          </a>
+                           
+  
+
+  
+    
+    
+  
+    
+            </div>
+        </div>
+        <div id="bodyColumn">
+          <div id="contentBox">
+            
+  
+    <div class="section"><h2>jaks:assemble<a name="jaks:assemble"></a></h2>
+      <p><b>Full name</b>:</p>
+      <p>com.googlecode.jaks:jaks-maven-plugin:0.0.1-SNAPSHOT:assemble</p>
+      <p><b>Description</b>:</p>
+      <div>Assemble a Java application into an archive.</div>
+      <p><b>Attributes</b>:</p>
+      <ul>
+        <li>Requires a Maven project to be executed.</li>
+        <li>Requires dependency resolution of artifacts in scope: <tt>compile</tt>.</li>
+        <li>Binds by default to the lifecycle phase: <tt>package</tt>.</li>
+      </ul>
+      <div class="section"><h3>Optional Parameters<a name="Optional_Parameters"></a></h3>
+        <table class="bodyTable" border="0">
+          <tr class="a">
+            <th>Name</th>
+            <th>Type</th>
+            <th>Since</th>
+            <th>Description</th>
+          </tr>
+          <tr class="b">
+            <td><b><a href="#appFolder">appFolder</a></b></td>
+            <td><tt>File</tt></td>
+            <td><tt>-</tt></td>
+            <td>The source application folder. Resources in this folder are added
+to the assembled archives. <br />
+<b>Alias</b>: <tt>zip-compression</tt><br /></td>
+          </tr>
+          <tr class="a">
+            <td><b><a href="#fileSystemTargetFolder">fileSystemTargetFolder</a></b></td>
+            <td><tt>File</tt></td>
+            <td><tt>-</tt></td>
+            <td>File-system target. The files from the assembly are copied to this
+location for use in integration testing and development. <br />
+<b>Alias</b>: <tt>file-system-target-folder</tt><br /></td>
+          </tr>
+          <tr class="b">
+            <td><b><a href="#generatedAppFolder">generatedAppFolder</a></b></td>
+            <td><tt>File</tt></td>
+            <td><tt>-</tt></td>
+            <td>Items in the generated app folder are added to the archive. <br />
+<b>Alias</b>: <tt>generated-app-folder</tt><br /></td>
+          </tr>
+          <tr class="a">
+            <td><b><a href="#libFolder">libFolder</a></b></td>
+            <td><tt>String</tt></td>
+            <td><tt>-</tt></td>
+            <td>The folder containing the JARs. <br />
+<b>Alias</b>: <tt>lib-folder</tt> <br />
+<b>Default</b>: <tt>lib</tt><br /></td>
+          </tr>
+          <tr class="b">
+            <td><b><a href="#types">types</a></b></td>
+            <td><tt>List</tt></td>
+            <td><tt>-</tt></td>
+            <td>Types of archives to create. Any of <tt>zip</tt>,
+<tt>tar</tt>, <tt>tar.gz</tt>, <tt>tar.bz2</tt>. <br />
+<b>Default</b>: <tt>[&quot;zip&quot;, &quot;tar.gz&quot;]</tt><br /></td>
+          </tr>
+          <tr class="a">
+            <td><b><a href="#zipCompression">zipCompression</a></b></td>
+            <td><tt>int</tt></td>
+            <td><tt>-</tt></td>
+            <td>For the ZIP archive (if specified in <tt>atypes</tt>, 0 for no
+compression, 1 for fastest, 9 for smallest. 2 through 8 are a
+compromise between fastest and smallest. <br />
+<b>Alias</b>: <tt>zip-compression</tt> <br />
+<b>Default</b>: 1<br /></td>
+          </tr>
+        </table>
+      </div>
+      <div class="section"><h3>Parameter Details<a name="Parameter_Details"></a></h3>
+        <p><b><a name="appFolder">appFolder</a>:</b></p>
+        <div>The source application folder. Resources in this folder are added
+to the assembled archives. <br />
+<b>Alias</b>: <tt>zip-compression</tt></div>
+        <ul>
+          <li><b>Type</b>: <tt>java.io.File</tt></li>
+          <li><b>Required</b>: <tt>No</tt></li>
+          <li><b>Expression</b>: <tt>${project.basedir}/src/main/app</tt></li>
+        </ul><hr /><p><b><a name="fileSystemTargetFolder">fileSystemTargetFolder</a>:</b></p>
+        <div>File-system target. The files from the assembly are copied to this
+location for use in integration testing and development. <br />
+<b>Alias</b>: <tt>file-system-target-folder</tt></div>
+        <ul>
+          <li><b>Type</b>: <tt>java.io.File</tt></li>
+          <li><b>Required</b>: <tt>No</tt></li>
+          <li><b>Expression</b>: <tt>${project.build.directory}/installation</tt></li>
+        </ul><hr /><p><b><a name="generatedAppFolder">generatedAppFolder</a>:</b></p>
+        <div>Items in the generated app folder are added to the archive. <br />
+<b>Alias</b>: <tt>generated-app-folder</tt></div>
+        <ul>
+          <li><b>Type</b>: <tt>java.io.File</tt></li>
+          <li><b>Required</b>: <tt>No</tt></li>
+          <li><b>Expression</b>: <tt>${project.build.directory}/generated-app</tt></li>
+        </ul><hr /><p><b><a name="libFolder">libFolder</a>:</b></p>
+        <div>The folder containing the JARs. <br />
+<b>Alias</b>: <tt>lib-folder</tt> <br />
+<b>Default</b>: <tt>lib</tt></div>
+        <ul>
+          <li><b>Type</b>: <tt>java.lang.String</tt></li>
+          <li><b>Required</b>: <tt>No</tt></li>
+        </ul><hr /><p><b><a name="types">types</a>:</b></p>
+        <div>Types of archives to create. Any of <tt>zip</tt>,
+<tt>tar</tt>, <tt>tar.gz</tt>, <tt>tar.bz2</tt>. <br />
+<b>Default</b>: <tt>[&quot;zip&quot;, &quot;tar.gz&quot;]</tt></div>
+        <ul>
+          <li><b>Type</b>: <tt>java.util.List</tt></li>
+          <li><b>Required</b>: <tt>No</tt></li>
+        </ul><hr /><p><b><a name="zipCompression">zipCompression</a>:</b></p>
+        <div>For the ZIP archive (if specified in <tt>atypes</tt>, 0 for no
+compression, 1 for fastest, 9 for smallest. 2 through 8 are a
+compromise between fastest and smallest. <br />
+<b>Alias</b>: <tt>zip-compression</tt> <br />
+<b>Default</b>: 1</div>
+        <ul>
+          <li><b>Type</b>: <tt>int</tt></li>
+          <li><b>Required</b>: <tt>No</tt></li>
+        </ul>
+      </div>
+    </div>
+  
+
+          </div>
+        </div>
+        <div class="clear">
+          <hr/>
+        </div>
+        <div id="footer">
+          <div class="xright">Copyright &#169;         
+   
+          2012.
+    
+      All Rights Reserved.    
+  
+
+  
+    
+    
+  
+    
+  </div>
+          <div class="clear">
+            <hr/>
+          </div>
+        </div>
+    </div>
+  </body>
+</html>
