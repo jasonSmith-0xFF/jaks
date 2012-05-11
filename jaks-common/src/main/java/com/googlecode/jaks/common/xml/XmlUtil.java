@@ -51,7 +51,7 @@ import org.w3c.dom.ls.LSSerializer;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.googlecode.jsaf.common.SquashedException;
+import com.googlecode.jaks.common.SquashedException;
 import com.googlecode.jsaf.common.io.StreamUtil;
 
 /**
