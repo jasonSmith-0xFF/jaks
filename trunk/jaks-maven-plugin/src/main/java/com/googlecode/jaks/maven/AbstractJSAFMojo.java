@@ -1,4 +1,4 @@
-package com.googlecode.jsaf.maven;
+package com.googlecode.jaks.maven;
 
 import java.io.File;
 import java.io.IOException;
