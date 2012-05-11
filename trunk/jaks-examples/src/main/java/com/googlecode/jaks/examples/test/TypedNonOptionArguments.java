@@ -14,27 +14,32 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jsaf.examples.test;
+package com.googlecode.jaks.examples.test;
+
+import java.io.File;
+import java.util.List;
 
 import com.googlecode.jaks.cli.AbstractCommand;
-import com.googlecode.jaks.cli.JSAFOption;
+import com.googlecode.jaks.cli.JSAFNonOptionArguments;
 
 /**
- * Takes a single boolean parameter ({@code --test}); 
- * writes "true" to stdout if present, "false" if not.
+ * This command demonstrates a common use of non-option arguments - a list of files.
  * @author Jason Smith
  */
-public class BooleanParam extends AbstractCommand
+public class TypedNonOptionArguments extends AbstractCommand
 {
 	/**
-	 * The {@code --test} flag.
+	 * The non-option arguments interpreted as a list of files.
 	 */
-	@JSAFOption(name="test", description="Test for a boolean.")
-	public boolean test;
+	@JSAFNonOptionArguments
+	public List<File> files;
 	
 	@Override
 	public void execute() throws Exception 
 	{
-		System.out.print(test);
+		for(final File file : files)
+		{
+			System.out.println(file.getCanonicalPath());
+		}
 	}
 }
