@@ -26,7 +26,7 @@ import java.io.OutputStream;
 public class SquashedOutputStream extends OutputStream
 {
 	@Override
-	public void write(int b) throws IOException 
+	public void write(final int b) throws IOException 
 	{
 	}
 }

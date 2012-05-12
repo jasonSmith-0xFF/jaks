@@ -21,11 +21,19 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Sends the same data to multiple target output streams.
+ * @author Jason Smith
+ */
 public class MultiOutputStream extends OutputStream
 {
 	private final List<OutputStream> outs = new ArrayList<OutputStream>();
 	
-	public MultiOutputStream(OutputStream... outs)
+	/**
+	 * Constructor.
+	 * @param outs Set of target output streams.
+	 */
+	public MultiOutputStream(final OutputStream... outs)
 	{
 		for(final OutputStream out : outs)
 		{
