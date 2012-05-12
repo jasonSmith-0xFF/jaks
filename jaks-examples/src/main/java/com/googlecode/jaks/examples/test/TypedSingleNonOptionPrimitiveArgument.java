@@ -14,18 +14,24 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jaks.cli;
+package com.googlecode.jaks.examples.test;
 
-import java.util.Arrays;
+import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.JaksNonOptionArguments;
 
-import joptsimple.OptionParser;
-
-public class CommandProcessor 
+/**
+ * Takes a single {@link int} as a non-option argument and returns it
+ * via stdout.
+ * @author Jason Smith
+ */
+public class TypedSingleNonOptionPrimitiveArgument extends AbstractCommand
 {
-	public static void Main(String... args)
+	@JaksNonOptionArguments
+	public int value = 256;
+	
+	@Override
+	public void execute() throws Exception 
 	{
-		OptionParser parser = new OptionParser();
-		parser.acceptsAll(Arrays.asList("a", "all"), "Description for all.");
-		parser.acceptsAll(Arrays.asList("b", "bah"), "Description for bah.").withRequiredArg().ofType(Integer.class);
+		System.out.print(value);
 	}
 }
