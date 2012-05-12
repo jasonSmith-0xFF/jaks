@@ -20,8 +20,23 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.Arrays;
 
-public class Filter 
+/**
+ * A stock set of file filters.
+ * @author Jason Smith
+ */
+public final class Filter 
 {
+	/**
+	 * Private constructor.
+	 */
+	private Filter()
+	{
+	}
+	
+	/**
+	 * Accept all files and directories.
+	 * @return All files and directories.
+	 */
 	public static FileFilter all()
 	{
 		return 
@@ -35,6 +50,11 @@ public class Filter
 			};
 	}
 	
+	/**
+	 * Accept files and directories with the given names.
+	 * @param names The list of names.
+	 * @return Files and directories with the given names.
+	 */
 	public static FileFilter name(final String... names)
 	{
 		return 
@@ -48,6 +68,10 @@ public class Filter
 			};
 	}
 	
+	/**
+	 * Accept files, reject directories.
+	 * @return Files, but not directories.
+	 */
 	public static FileFilter file()
 	{
 		return 
@@ -61,6 +85,10 @@ public class Filter
 			};
 	}
 	
+	/**
+	 * Accept only hidden files.
+	 * @return Hidden files, but not others.
+	 */
 	public static FileFilter hidden()
 	{
 		return 
@@ -74,6 +102,10 @@ public class Filter
 			};
 	}
 	
+	/**
+	 * Accept directories, reject files.
+	 * @return Directories, but not files.
+	 */
 	public static FileFilter directory()
 	{
 		return 
@@ -87,6 +119,10 @@ public class Filter
 			};
 	}
 	
+	/**
+	 * Reject directories <tt>.svn</tt> and <tt>_svn</tt>; accept anything else.
+	 * @return All files and directories except directories <tt>.svn</tt> and <tt>_svn</tt>.
+	 */
 	public static FileFilter svnAware()
 	{
 		return 
@@ -100,6 +136,10 @@ public class Filter
 			};
 	}
 	
+	/**
+	 * Reject directory <tt>target</tt>; accept anything else.
+	 * @return All files and directories except directory <tt>target</tt>.
+	 */
 	public static FileFilter mavenAware()
 	{
 		return 
@@ -113,6 +153,11 @@ public class Filter
 			};
 	}
 	
+	/**
+	 * Accept a file if any of the included filters accept it.
+	 * @param filters The list of filters.
+	 * @return Any file that is accepted by one or more of the filters.
+	 */
 	public static FileFilter or(final FileFilter... filters)
 	{
 		return 
@@ -133,6 +178,11 @@ public class Filter
 			};
 	} 
 	
+	/**
+	 * Accept a file if all of the included filters accept it.
+	 * @param filters The list of filters.
+	 * @return Any file that is accepted by all of the filters.
+	 */
 	public static FileFilter and(final FileFilter... filters)
 	{
 		return 
@@ -153,6 +203,11 @@ public class Filter
 			};
 	}
 	
+	/**
+	 * Invert the output of the filter, turning accept into reject and vice versa.
+	 * @param filter The filter.
+	 * @return Any file that is rejected by the wrapped filter.
+	 */
 	public static FileFilter not(final FileFilter filter)
 	{
 		return 
@@ -165,5 +220,4 @@ public class Filter
 				}
 			};
 	} 
-	
 }
