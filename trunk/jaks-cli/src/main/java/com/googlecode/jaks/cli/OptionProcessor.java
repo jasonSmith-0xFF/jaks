@@ -53,8 +53,10 @@ public class OptionProcessor
 	 * Initialize an option parser with the annotations from the {@code command} instance.
 	 * @param command The command class.
 	 * @return The option parser.
+	 * @throws IllegalAccessException 
+	 * @throws IllegalArgumentException 
 	 */
-	public OptionParser initializeOptionParser(final Object command)
+	public OptionParser initializeOptionParser(final Object command) throws IllegalArgumentException, IllegalAccessException
 	{
 		final OptionParser optionParser = new OptionParser();
 		optionParser.posixlyCorrect(false);
@@ -64,7 +66,7 @@ public class OptionProcessor
 			final JaksOption option = field.getAnnotation(JaksOption.class);
 			if(option != null)
 			{
-				initializeAnOption(optionParser, field, option.name(), option.description(), option.separator(), option.required());
+				initializeAnOption(command, optionParser, field, option.name(), option.description(), option.separator(), option.required());
 			}
 		}
 		
@@ -72,12 +74,13 @@ public class OptionProcessor
 	}
 	
 	protected void initializeAnOption(
+			final Object command,
 			final OptionParser optionParser, 
 			final Field field, 
 			final String[] optionName, 
 			final String optionDescription,
 			final char optionSeparator,
-			final boolean optionIsRequired)
+			final boolean optionIsRequired) throws IllegalArgumentException, IllegalAccessException
 	{
 		final OptionSpecBuilder builder = optionParser.acceptsAll(Arrays.asList(optionName), optionDescription);
 		if(!BOOLEAN_CLASSES.contains(field.getType()))
@@ -107,6 +110,24 @@ public class OptionProcessor
 			if(optionIsRequired)
 			{
 				optionSpec.required();
+			}
+			
+			field.setAccessible(true);
+			if(field.get(command) != null)
+			{
+				final Object fieldValue = field.get(command);
+				if(fieldValue instanceof Collection)
+				{
+					optionSpec.defaultsTo(((Collection<?>)fieldValue).toArray());
+				}
+				else if(fieldValue.getClass().isArray())
+				{
+					optionSpec.defaultsTo(Arrays.asList(fieldValue).toArray());
+				}
+				else
+				{
+					optionSpec.defaultsTo(new Object[]{fieldValue});
+				}
 			}
 		}
 	}
@@ -217,7 +238,7 @@ public class OptionProcessor
 		 * I can support any collection type and standard type conversions (File, int, etc.).
 		 */
 		final OptionParser fakeParser = new OptionParser();
-		initializeAnOption(fakeParser, field, new String[]{"option"}, "This is a fake option", '\u0000', false);
+		initializeAnOption(command, fakeParser, field, new String[]{"option"}, "This is a fake option", '\u0000', false);
 		
 		final List<String> fakeArgs = new ArrayList<String>();
 		for(final String arg : optionSet.nonOptionArguments())
