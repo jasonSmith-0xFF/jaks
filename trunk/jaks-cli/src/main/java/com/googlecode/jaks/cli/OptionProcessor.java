@@ -19,6 +19,7 @@ package com.googlecode.jaks.cli;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +27,8 @@ import java.util.Collection;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+
+import com.googlecode.jaks.common.SquashedException;
 
 import joptsimple.ArgumentAcceptingOptionSpec;
 import joptsimple.OptionParser;
@@ -118,17 +121,41 @@ public class OptionProcessor
 				final Object fieldValue = field.get(command);
 				if(fieldValue instanceof Collection)
 				{
-					optionSpec.defaultsTo(((Collection<?>)fieldValue).toArray());
+					setDefaultValues(optionSpec, (Collection<?>)fieldValue);
 				}
 				else if(fieldValue.getClass().isArray())
 				{
-					optionSpec.defaultsTo(Arrays.asList(fieldValue).toArray());
+					setDefaultValues(optionSpec, Arrays.asList(fieldValue));
 				}
 				else
 				{
-					optionSpec.defaultsTo(new Object[]{fieldValue});
+					setDefaultValues(optionSpec, Arrays.asList(fieldValue));
 				}
 			}
+		}
+	}
+	
+	/**
+	 * Set the default values.
+	 * @param optionSpec The options specification.
+	 * @param values The values to set.
+	 */
+	protected void setDefaultValues(final ArgumentAcceptingOptionSpec<?> optionSpec, Collection<?> values)
+	{
+		/*
+		 * This is made necessary by a compile bug in Eclipse.
+		 * If you can uncomment the following line without an error, it's been fixed.
+		 */
+		//optionSpec.defaultsTo(values.toArray());
+		try
+		{
+			final Method methodDefaultsTo = optionSpec.getClass().getMethod("defaultsTo", Object[].class);
+			methodDefaultsTo.setAccessible(true);
+			methodDefaultsTo.invoke(optionSpec, new Object[]{values.toArray()});
+		}
+		catch(final Exception e)
+		{
+			SquashedException.raise(e);
 		}
 	}
 	
