@@ -356,6 +356,7 @@ public class Subprocess extends ArrayList<String>
             }
         }
     }
+    
     /**
      * Provides the shutdown handler. The default implementation is {@link Subprocess.DefaultShutdownHandlerImpl}.
      * Override this method to modify the shutdown.
@@ -366,6 +367,7 @@ public class Subprocess extends ArrayList<String>
     {
     	return new DefaultShutdownHandlerImpl(process);
     }
+    
     /**
      * Abstract shutdown hook.
      * @author Jason Smith
