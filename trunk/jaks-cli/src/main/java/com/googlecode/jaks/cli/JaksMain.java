@@ -16,13 +16,21 @@
  */
 package com.googlecode.jaks.cli;
 
-
+/**
+ * The standard entry-point for Jaks scripts.
+ * @author Jason Smith
+ */
 public class JaksMain 
 {
+	/**
+	 * Launch a Jaks {@link AbstractCommand}.
+	 * @param args The arguments from the command-line.
+	 * @throws Exception See {@link Exception}.
+	 */
 	public static void main(String... args) throws Exception
 	{
 		final Class<?> commandClass = Class.forName(System.getProperty("jaks.command.class"), true, JaksMain.class.getClassLoader());
-		AbstractCommand command = (AbstractCommand)commandClass.newInstance();
+		final AbstractCommand command = (AbstractCommand)commandClass.newInstance();
 		
 		final OptionProcessor proc = new OptionProcessor();
 		proc.process(command, args);
