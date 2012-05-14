@@ -189,7 +189,7 @@ public class OptionProcessor
 			}
 			else
 			{
-				final JaksNonOptionArguments nonOption = field.getAnnotation(JaksNonOptionArguments.class);
+				final JaksNonOption nonOption = field.getAnnotation(JaksNonOption.class);
 				if(nonOption != null)
 				{
 					processNonOptionArgumentsAnnotation(command, field, optionSet);
@@ -268,8 +268,10 @@ public class OptionProcessor
 		 * allows me to process them the same way I process other options. That is,
 		 * I can support any collection type and standard type conversions (File, int, etc.).
 		 */
+		final JaksNonOption nonOption = field.getAnnotation(JaksNonOption.class);
+		
 		final OptionParser fakeParser = new OptionParser();
-		initializeAnOption(command, fakeParser, field, new String[]{"option"}, "This is a fake option", '\u0000', false);
+		initializeAnOption(command, fakeParser, field, new String[]{"option"}, "This is a fake option", '\u0000', nonOption.required());
 		
 		final List<String> fakeArgs = new ArrayList<String>();
 		for(final String arg : optionSet.nonOptionArguments())

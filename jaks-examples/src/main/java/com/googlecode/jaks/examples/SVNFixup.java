@@ -34,7 +34,7 @@ import java.util.Map;
 import org.w3c.dom.Document;
 
 import com.googlecode.jaks.cli.AbstractCommand;
-import com.googlecode.jaks.cli.JaksNonOptionArguments;
+import com.googlecode.jaks.cli.JaksNonOption;
 import com.googlecode.jaks.common.io.FileUtil;
 import com.googlecode.jaks.common.io.SquashedOutputStream;
 import com.googlecode.jaks.common.io.StreamUtil;
@@ -55,7 +55,7 @@ public class SVNFixup extends AbstractCommand
 	/**
 	 * A list of files or folders to be fixed-up.
 	 */
-	@JaksNonOptionArguments
+	@JaksNonOption
 	public List<File> files;
 	
 	private final XmlUtil xml = new XmlUtil();
