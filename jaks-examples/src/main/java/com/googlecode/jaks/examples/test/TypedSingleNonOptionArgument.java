@@ -14,9 +14,26 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.googlecode.jaks.examples.ext;
+package com.googlecode.jaks.examples.test;
 
-public class SayHello extends com.googlecode.jaks.examples.SayHello
+import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.JaksNonOptionArguments;
+
+/**
+ * This command demonstrates a single non-option argument with a defined default value.
+ * @author Jason Smith
+ */
+public class TypedSingleNonOptionArgument extends AbstractCommand
 {
-
+	/**
+	 * Command expects a single non-option argument, an integer.
+	 */
+	@JaksNonOptionArguments
+	public Integer value = 256;
+	
+	@Override
+	public void execute() throws Exception 
+	{
+		System.out.print(value);
+	}
 }
