@@ -198,7 +198,11 @@ public class OptionProcessor
 		}
 	}
 	
-	protected void processOptionAnnotation(final Object command, final Field field, final OptionSet optionSet, final String[] optionName) throws IllegalArgumentException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException, SecurityException
+	protected void processOptionAnnotation(
+			final Object command, 
+			final Field field, 
+			final OptionSet optionSet, 
+			final String[] optionName) throws IllegalArgumentException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException, SecurityException
 	{
 		if(BOOLEAN_CLASSES.contains(field.getType()))
 		{
