@@ -17,7 +17,7 @@
 package com.googlecode.jaks.examples.test;
 
 import com.googlecode.jaks.cli.AbstractCommand;
-import com.googlecode.jaks.cli.JaksNonOptionArguments;
+import com.googlecode.jaks.cli.JaksNonOption;
 
 /**
  * Takes a single {@link int} as a non-option argument and returns it
@@ -26,7 +26,7 @@ import com.googlecode.jaks.cli.JaksNonOptionArguments;
  */
 public class TypedSingleNonOptionPrimitiveArgument extends AbstractCommand
 {
-	@JaksNonOptionArguments
+	@JaksNonOption
 	public int value = 256;
 	
 	@Override

@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface JaksNonOptionArguments 
+public @interface JaksNonOption 
 {
-	
+	public boolean required() default false;
 }
