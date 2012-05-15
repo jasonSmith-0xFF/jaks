@@ -48,14 +48,13 @@ public abstract class AbstractJaksCommand
 	{
 		try
 		{
-			final OptionProcessor proc = new OptionProcessor();
 			if(args.length > 0 && Arrays.asList("-h", "--help").contains(args[0]))
 			{
-				printHelp(proc);
+				printHelp();
 			}
 			else
 			{
-				proc.process(this, args);
+				new OptionProcessor().process(this, args);
 				execute();
 			}
 		}
@@ -91,9 +90,9 @@ public abstract class AbstractJaksCommand
 	 * @param proc The option-processor.
 	 * @throws IOException See {@link IOException}.
 	 */
-	protected void printHelp(final OptionProcessor proc) throws IOException
+	protected void printHelp() throws IOException
 	{
-		final OptionParser parser = proc.initializeOptionParser(this);
+		final OptionParser parser = new OptionProcessor().initializeOptionParser(this);
 		System.out.println(getCommandName() + " [options]");
 		System.out.println();
 		parser.printHelpOn(System.out);
