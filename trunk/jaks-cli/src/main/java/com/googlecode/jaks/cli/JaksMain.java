@@ -23,14 +23,14 @@ package com.googlecode.jaks.cli;
 public class JaksMain 
 {
 	/**
-	 * Launch a Jaks {@link AbstractCommand}.
+	 * Launch a Jaks {@link AbstractJaksCommand}.
 	 * @param args The arguments from the command-line.
 	 * @throws Exception See {@link Exception}.
 	 */
 	public static void main(String... args) throws Exception
 	{
 		final Class<?> commandClass = Class.forName(System.getProperty("jaks.command.class"), true, JaksMain.class.getClassLoader());
-		final AbstractCommand command = (AbstractCommand)commandClass.newInstance();
+		final AbstractJaksCommand command = (AbstractJaksCommand)commandClass.newInstance();
 		
 		command.startCommand(args);
 	}

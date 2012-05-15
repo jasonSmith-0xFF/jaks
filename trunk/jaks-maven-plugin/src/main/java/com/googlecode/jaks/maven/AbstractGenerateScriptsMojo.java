@@ -21,7 +21,7 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.codehaus.plexus.util.StringUtils;
 
-import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.AbstractJaksCommand;
 import com.googlecode.jaks.cli.JaksMain;
 import com.googlecode.jaks.common.io.StreamUtil;
 
@@ -156,7 +156,7 @@ public abstract class AbstractGenerateScriptsMojo extends AbstractJaksMojo
 	
 	private String getCommandName(final Class<?> commandClass) throws InstantiationException, IllegalAccessException
 	{
-		final AbstractCommand command = (AbstractCommand)commandClass.newInstance();
+		final AbstractJaksCommand command = (AbstractJaksCommand)commandClass.newInstance();
 		return command.getCommandName();
 	}
 	

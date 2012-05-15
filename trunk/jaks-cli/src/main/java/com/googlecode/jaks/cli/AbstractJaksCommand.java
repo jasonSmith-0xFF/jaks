@@ -8,9 +8,16 @@ import java.util.Locale;
 
 import joptsimple.OptionParser;
 
+/**
+ * The abstract, base command class which concrete commands must extend.
+ * @author Jason Smith
+ */
 @JaksCommand
-public abstract class AbstractCommand 
+public abstract class AbstractJaksCommand 
 {
+	/**
+	 * If set, errors will show the full stack trace and not just a summary.
+	 */
 	@JaksOption(name = {"e", "verbose-errors"},description="Errors show full stack trace.")
 	public boolean verboseErrors = false;
 	
@@ -27,8 +34,16 @@ public abstract class AbstractCommand
 		return simpleName.toLowerCase(Locale.getDefault()).replace('$', '.').replace('_', '-');
 	}
 	
+	/**
+	 * Overridden in the command class to implement the logic of the command.
+	 * @throws Exception The command is expected to be able to throw any type of {@link Exception}.
+	 */
 	public abstract void execute() throws Exception;
 	
+	/**
+	 * Called from {@link JaksMain} to start the command.
+	 * @param args The arguments passed from the command line.
+	 */
 	public void startCommand(final String... args)
 	{
 		try
@@ -71,6 +86,11 @@ public abstract class AbstractCommand
 		}
 	}
 	
+	/**
+	 * Print help for this command.
+	 * @param proc The option-processor.
+	 * @throws IOException See {@link IOException}.
+	 */
 	protected void printHelp(final OptionProcessor proc) throws IOException
 	{
 		final OptionParser parser = proc.initializeOptionParser(this);
@@ -79,6 +99,10 @@ public abstract class AbstractCommand
 		parser.printHelpOn(System.out);
 	}
 	
+	/**
+	 * Get the full path to the script file this command was launched from.
+	 * @return The full path to the script file.
+	 */
 	protected File getLaunchScript()
 	{
 		return new File(System.getProperty("jaks.launch.script"));

@@ -19,14 +19,14 @@ package com.googlecode.jaks.examples.test;
 import java.io.File;
 import java.util.List;
 
-import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.AbstractJaksCommand;
 import com.googlecode.jaks.cli.JaksNonOption;
 
 /**
  * This command demonstrates a common use of non-option arguments - a list of files.
  * @author Jason Smith
  */
-public class TypedNonOptionArguments extends AbstractCommand
+public class TypedNonOptionArguments extends AbstractJaksCommand
 {
 	/**
 	 * The non-option arguments interpreted as a list of files.
