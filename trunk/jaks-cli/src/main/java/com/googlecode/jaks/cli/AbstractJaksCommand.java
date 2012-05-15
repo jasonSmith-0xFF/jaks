@@ -94,7 +94,7 @@ public abstract class AbstractJaksCommand
 	protected void printHelp(final OptionProcessor proc) throws IOException
 	{
 		final OptionParser parser = proc.initializeOptionParser(this);
-		System.out.println(getLaunchScript().getName().split("\\.")[0] + " [options]");
+		System.out.println(getCommandName() + " [options]");
 		System.out.println();
 		parser.printHelpOn(System.out);
 	}
