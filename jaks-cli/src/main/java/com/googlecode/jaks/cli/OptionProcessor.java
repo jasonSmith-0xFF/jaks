@@ -56,10 +56,8 @@ public class OptionProcessor
 	 * Initialize an option parser with the annotations from the {@code command} instance.
 	 * @param command The command class.
 	 * @return The option parser.
-	 * @throws IllegalAccessException 
-	 * @throws IllegalArgumentException 
 	 */
-	public OptionParser initializeOptionParser(final Object command) throws IllegalArgumentException, IllegalAccessException
+	public OptionParser initializeOptionParser(final Object command)
 	{
 		final OptionParser optionParser = new OptionParser();
 		optionParser.posixlyCorrect(false);
@@ -83,7 +81,7 @@ public class OptionProcessor
 			final String[] optionName, 
 			final String optionDescription,
 			final char optionSeparator,
-			final boolean optionIsRequired) throws IllegalArgumentException, IllegalAccessException
+			final boolean optionIsRequired)
 	{
 		final OptionSpecBuilder builder = optionParser.acceptsAll(Arrays.asList(optionName), optionDescription);
 		if(!BOOLEAN_CLASSES.contains(field.getType()))
@@ -116,21 +114,28 @@ public class OptionProcessor
 			}
 			
 			field.setAccessible(true);
-			if(field.get(command) != null)
+			try 
 			{
-				final Object fieldValue = field.get(command);
-				if(fieldValue instanceof Collection)
+				if(field.get(command) != null)
 				{
-					setDefaultValues(optionSpec, (Collection<?>)fieldValue);
+					final Object fieldValue = field.get(command);
+					if(fieldValue instanceof Collection)
+					{
+						setDefaultValues(optionSpec, (Collection<?>)fieldValue);
+					}
+					else if(fieldValue.getClass().isArray())
+					{
+						setDefaultValues(optionSpec, Arrays.asList(fieldValue));
+					}
+					else
+					{
+						setDefaultValues(optionSpec, Arrays.asList(fieldValue));
+					}
 				}
-				else if(fieldValue.getClass().isArray())
-				{
-					setDefaultValues(optionSpec, Arrays.asList(fieldValue));
-				}
-				else
-				{
-					setDefaultValues(optionSpec, Arrays.asList(fieldValue));
-				}
+			} 
+			catch (IllegalArgumentException | IllegalAccessException e) 
+			{
+				SquashedException.raise(e);
 			}
 		}
 	}
