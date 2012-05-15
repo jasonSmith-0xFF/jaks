@@ -16,7 +16,7 @@
  */
 package com.googlecode.jaks.examples.test;
 
-import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.AbstractJaksCommand;
 import com.googlecode.jaks.cli.JaksOption;
 
 /**
@@ -24,7 +24,7 @@ import com.googlecode.jaks.cli.JaksOption;
  * writes "true" to stdout if present, "false" if not.
  * @author Jason Smith
  */
-public class BooleanParam extends AbstractCommand
+public class BooleanParam extends AbstractJaksCommand
 {
 	/**
 	 * The {@code --test} flag.

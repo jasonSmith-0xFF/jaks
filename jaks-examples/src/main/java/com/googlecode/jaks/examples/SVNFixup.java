@@ -33,7 +33,7 @@ import java.util.Map;
 
 import org.w3c.dom.Document;
 
-import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.AbstractJaksCommand;
 import com.googlecode.jaks.cli.JaksNonOption;
 import com.googlecode.jaks.common.io.FileUtil;
 import com.googlecode.jaks.common.io.SquashedOutputStream;
@@ -50,7 +50,7 @@ import com.googlecode.jaks.system.SubprocessException;
  * enumeration with {@link FileUtil} and {@link Filter}.
  * @author Jason Smith
  */
-public class SVNFixup extends AbstractCommand
+public class SVNFixup extends AbstractJaksCommand
 {
 	/**
 	 * A list of files or folders to be fixed-up.

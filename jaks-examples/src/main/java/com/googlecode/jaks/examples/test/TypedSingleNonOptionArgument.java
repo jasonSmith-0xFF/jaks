@@ -16,14 +16,14 @@
  */
 package com.googlecode.jaks.examples.test;
 
-import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.AbstractJaksCommand;
 import com.googlecode.jaks.cli.JaksNonOption;
 
 /**
  * This command demonstrates a single non-option argument with a defined default value.
  * @author Jason Smith
  */
-public class TypedSingleNonOptionArgument extends AbstractCommand
+public class TypedSingleNonOptionArgument extends AbstractJaksCommand
 {
 	/**
 	 * Command expects a single non-option argument, an integer.

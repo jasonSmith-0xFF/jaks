@@ -16,7 +16,7 @@
  */
 package com.googlecode.jaks.examples.test;
 
-import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.AbstractJaksCommand;
 import com.googlecode.jaks.cli.JaksNonOption;
 
 /**
@@ -24,7 +24,7 @@ import com.googlecode.jaks.cli.JaksNonOption;
  * via stdout.
  * @author Jason Smith
  */
-public class TypedSingleNonOptionPrimitiveArgument extends AbstractCommand
+public class TypedSingleNonOptionPrimitiveArgument extends AbstractJaksCommand
 {
 	@JaksNonOption
 	public int value = 256;

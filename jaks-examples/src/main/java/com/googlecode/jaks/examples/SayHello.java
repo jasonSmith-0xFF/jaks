@@ -16,10 +16,10 @@
  */
 package com.googlecode.jaks.examples;
 
-import com.googlecode.jaks.cli.AbstractCommand;
+import com.googlecode.jaks.cli.AbstractJaksCommand;
 import com.googlecode.jaks.cli.JaksOption;
 
-public class SayHello extends AbstractCommand
+public class SayHello extends AbstractJaksCommand
 {
 	@JaksOption(name={"w","who"}, description="Who are we saying 'Hello' to?")
 	public String who="World";
