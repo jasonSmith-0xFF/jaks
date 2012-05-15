@@ -32,9 +32,6 @@ public class JaksMain
 		final Class<?> commandClass = Class.forName(System.getProperty("jaks.command.class"), true, JaksMain.class.getClassLoader());
 		final AbstractCommand command = (AbstractCommand)commandClass.newInstance();
 		
-		final OptionProcessor proc = new OptionProcessor();
-		proc.process(command, args);
-		
-		command.execute();
+		command.startCommand(args);
 	}
 }
