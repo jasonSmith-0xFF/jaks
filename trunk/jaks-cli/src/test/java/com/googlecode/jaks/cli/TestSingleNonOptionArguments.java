@@ -17,6 +17,124 @@ public class TestSingleNonOptionArguments extends Assert
 
 	/**
 	 * This command demonstrates a single non-option argument without a defined default value.
+	 * @author Jason Smith
+	 */
+	public class TypedNoDefault
+	{
+		/**
+		 * Command expects a single non-option argument, an integer.
+		 */
+		@JaksNonOption
+		public Integer value;
+	}
+	
+	/**
+	 * Verify that when I pass in a single non-option argument, it is passed back correctly.
+	 * @throws Exception See {@link Exception}.
+	 */
+	@Test
+	public void testTypedNoDefaultPassOneValue() throws Exception
+	{
+		assertEquals("Returned the wrong value.", 
+				Integer.valueOf(42), 
+				proc.process(new TypedNoDefault(), "42").value);
+	}
+	
+	/**
+	 * The command specifies a single value, not a collection or array; verify that when I pass more than one
+	 * value, the command throws an exception.
+	 * @throws Exception See {@link Exception}.
+	 */
+	@Test(expected=OptionException.class)
+	public void testTypedNoDefaultPassTwoValuesNotAllowed() throws Exception
+	{
+		proc.process(new TypedNoDefault(), "42", "43");
+	}
+	
+	/**
+	 * Defined single non-option argument with no default defaults to {@code null}.
+	 * @throws Exception See {@link Exception}.
+	 */
+	@Test
+	public void testTypedNoDefaultPassZeroValues() throws Exception
+	{
+		assertEquals("No default and value not defined; expected 'null.'", 
+				null, 
+				proc.process(new TypedNoDefault()).value);
+	}
+	
+	/**
+	 * Verify that command throws exception if there is a conversion error.
+	 * @throws Exception See {@link Exception}.
+	 */
+	@Test(expected=OptionException.class) 
+	public void testTypedNoDefaultBadConversion() throws Exception
+	{
+		proc.process(new TypedNoDefault(), "wont-convert-to-integer");
+	}
+	
+	/**
+	 * This command demonstrates a single non-option argument with a defined default value.
+	 * @author Jason Smith
+	 */
+	public class TypedWithDefault
+	{
+		/**
+		 * Command expects a single non-option argument, an integer.
+		 */
+		@JaksNonOption
+		public Integer value = 256;
+	}
+	
+	/**
+	 * Verify that when I pass in a single non-option argument, it is passed back correctly.
+	 * @throws Exception See {@link Exception}.
+	 */
+	@Test
+	public void testTypedWithDefaultPassOneValue() throws Exception
+	{
+		assertEquals("Returned the wrong value.", 
+				Integer.valueOf(42), 
+				proc.process(new TypedWithDefault(), "42").value);
+	}
+	
+	/**
+	 * The command specifies a single value, not a collection or array; verify that when I pass more than one
+	 * value, the command throws an exception.
+	 * @throws Exception See {@link Exception}.
+	 */
+	@Test(expected=OptionException.class)
+	public void testTypedWithDefaultPassTwoValuesNotAllowed() throws Exception
+	{
+		proc.process(new TypedWithDefault(), "42", "43");
+	}
+	
+	/**
+	 * Verify that we get the default value back if no explicit value is specified.
+	 * Primitive types always have a default value, usually 0. In this case, I have set
+	 * a non-standard default for testing.
+	 * @throws Exception See {@link Exception}.
+	 */
+	@Test
+	public void testTypedWithDefaultPassZeroValues() throws Exception
+	{
+		assertEquals("Didn't return the expected default value.", 
+				Integer.valueOf(256),
+				proc.process(new TypedWithDefault()).value);
+	}
+	
+	/**
+	 * Verify that command throws exception if there is a conversion error.
+	 * @throws Exception See {@link Exception}.
+	 */
+	@Test(expected=OptionException.class) 
+	public void testTypedWithDefaultBadConversion() throws Exception
+	{
+		proc.process(new TypedWithDefault(), "wont-convert-to-integer");
+	}
+	
+	/**
+	 * This command demonstrates a single non-option argument without a defined default value.
 	 */
 	public static class Required
 	{
