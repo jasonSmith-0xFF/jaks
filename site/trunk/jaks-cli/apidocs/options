@@ -1,5 +1,5 @@
 -classpath
-'/home/developer/ws/jaks/jaks-cli/target/classes:/home/developer/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar:/home/developer/.m2/repository/com/googlecode/jaks/jaks-common/0.0.1-SNAPSHOT/jaks-common-0.0.1-SNAPSHOT.jar:/home/developer/.m2/repository/net/sf/jopt-simple/jopt-simple/4.3/jopt-simple-4.3.jar:/home/developer/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/developer/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar'
+'/home/developer/ws/jaks/jaks-cli/target/classes:/home/developer/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar:/home/developer/ws/jaks/jaks-common/target/jaks-common-0.0.1-SNAPSHOT.jar:/home/developer/.m2/repository/net/sf/jopt-simple/jopt-simple/4.3/jopt-simple-4.3.jar:/home/developer/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar:/home/developer/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar'
 -encoding
 'UTF-8'
 -protected
@@ -18,6 +18,8 @@
 'jaks-cli 0.0.1-SNAPSHOT API'
 -linkoffline
 'http://download.oracle.com/javase/6/docs/api' '/home/developer/ws/jaks/jaks-cli/target/javadoc-bundle-options'
+-linkoffline
+'http://jaks.googlecode.com/svn/site/trunk/jaks-common/apidocs' '/home/developer/ws/jaks/jaks-common/target/site/apidocs'
 -use
 -version
 -windowtitle
