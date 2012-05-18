@@ -101,7 +101,7 @@ public class AssembleMojo extends AbstractJaksMojo
 			nodes.add(new Folder(libFolder));
 			for(final Artifact artifact : getCompileArtifacts())
 			{
-				nodes.add(new FileResource(libFolder + "/" + artifact.getArtifactId() + "-" + project.getVersion() + ".jar", artifact.getFile()));
+				nodes.add(new FileResource(libFolder + "/" + artifact.getArtifactId() + "-" + artifact.getVersion() + ".jar", artifact.getFile()));
 			}
 			
 			for(final String type : new LinkedHashSet<String>(types))
