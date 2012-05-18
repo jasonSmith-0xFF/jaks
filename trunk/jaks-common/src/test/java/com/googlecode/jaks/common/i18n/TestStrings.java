@@ -8,6 +8,8 @@ import java.util.Map;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.googlecode.jaks.common.l10n.Strings;
+
 public class TestStrings extends Assert
 {
 	public interface iAA

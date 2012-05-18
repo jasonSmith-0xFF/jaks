@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.googlecode.jaks.common.SquashedException;
-import com.googlecode.jaks.common.i18n.Strings;
+import com.googlecode.jaks.common.l10n.Strings;
 
 import joptsimple.ArgumentAcceptingOptionSpec;
 import joptsimple.OptionParser;
