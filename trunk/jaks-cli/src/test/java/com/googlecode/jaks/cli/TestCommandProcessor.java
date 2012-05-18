@@ -19,6 +19,7 @@ package com.googlecode.jaks.cli;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -42,9 +43,9 @@ public class TestCommandProcessor extends Assert
 	public void testBoolean() throws Exception
 	{
 		assertTrue("Didn't detect --testbool, although it's there.", 
-				proc.process(new ExampleCommand1(), "--testbool").testBool);
+				proc.process(new ExampleCommand1(), Locale.getDefault(), "--testbool").testBool);
 		assertFalse("Detected --testbool when not specified.", 
-				proc.process(new ExampleCommand1()).testBool);
+				proc.process(new ExampleCommand1(), Locale.getDefault()).testBool);
 	}  
 	
 	public static class ExampleCommand2 
@@ -58,7 +59,7 @@ public class TestCommandProcessor extends Assert
 	{
 		assertEquals("Did not return expected value.",
 				"Hello, world.",
-				proc.process(new ExampleCommand2(), "-s", "Hello, world.").testString);
+				proc.process(new ExampleCommand2(), Locale.getDefault(), "-s", "Hello, world.").testString);
 	}
 	
 	public static class ExampleCommand3 
@@ -71,7 +72,7 @@ public class TestCommandProcessor extends Assert
 	{
 		assertArrayEquals("", 
 				new String[] {"a", "b", "c"}, 
-				proc.process(new ExampleCommand3(), "-s", "a,b", "-s", "c").testString);
+				proc.process(new ExampleCommand3(), Locale.getDefault(), "-s", "a,b", "-s", "c").testString);
 	}
 	
 	public static class ExampleCommand4 
@@ -85,7 +86,7 @@ public class TestCommandProcessor extends Assert
 		assertTrue("Didn't get back the expected results.", 
 				CollectionUtils.isEqualCollection(
 						Arrays.asList("a", "b", "c"), 
-						proc.process(new ExampleCommand4(), "-s", "a,b", "-s", "c").testString));
+						proc.process(new ExampleCommand4(), Locale.getDefault(), "-s", "a,b", "-s", "c").testString));
 	}
 
 	public static class ExampleCommand5 
@@ -99,7 +100,7 @@ public class TestCommandProcessor extends Assert
 		assertTrue("Didn't get back the expected results.", 
 				CollectionUtils.isEqualCollection(
 						Arrays.asList(1, 2, 3), 
-						proc.process(new ExampleCommand5(), "-i", "1,2", "-i", "3").testInt));
+						proc.process(new ExampleCommand5(), Locale.getDefault(), "-i", "1,2", "-i", "3").testInt));
 	}
 	
 	public static class ExampleCommand6 
@@ -113,7 +114,7 @@ public class TestCommandProcessor extends Assert
 		assertTrue("Didn't get back the expected results.", 
 				CollectionUtils.isEqualCollection(
 						Arrays.asList(1, 2, 3), 
-						proc.process(new ExampleCommand5(), "-i", "1,2", "-i", "3").testInt));
+						proc.process(new ExampleCommand5(), Locale.getDefault(), "-i", "1,2", "-i", "3").testInt));
 	}
 
 }

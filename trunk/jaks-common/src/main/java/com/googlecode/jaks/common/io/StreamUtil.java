@@ -21,11 +21,13 @@ import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Reader;
 import java.io.StringReader;
+import java.io.StringWriter;
 import java.io.Writer;
 import java.nio.charset.Charset;
 
@@ -134,5 +136,35 @@ public final class StreamUtil
 	public static void write(final String text, final OutputStream target, final String charset) throws IOException
 	{
 		transfer(new ByteArrayInputStream(text.getBytes(charset==null?StreamUtil.DEFAULT_CHARSET:charset)), target);
+	}
+	
+	/**
+	 * Read all the characters from a {@link Reader} into a {@link String}.
+	 * @param reader The source reader.
+	 * @return The string data read from the reader.
+	 * @throws IOException See {@link IOException}.
+	 */
+	public static String read(final Reader reader) throws IOException
+	{
+		try(final StringWriter writer = new StringWriter())
+		{
+			transfer(reader, writer);
+			return writer.toString();
+		}
+	}
+	
+	/**
+	 * Read all the bytes from an {@link InputStream} into an array of bytes.
+	 * @param source The source input stream.
+	 * @return The byte array.
+	 * @throws IOException See {@link IOException}.
+	 */
+	public static byte[] readBytes(final InputStream source) throws IOException
+	{
+		try(final ByteArrayOutputStream target = new ByteArrayOutputStream())
+		{
+			transfer(source, target);
+			return target.toByteArray();
+		}
 	}
 }

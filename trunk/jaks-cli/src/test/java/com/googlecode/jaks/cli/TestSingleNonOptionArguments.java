@@ -1,5 +1,7 @@
 package com.googlecode.jaks.cli;
 
+import java.util.Locale;
+
 import joptsimple.OptionException;
 
 import org.junit.Assert;
@@ -37,7 +39,7 @@ public class TestSingleNonOptionArguments extends Assert
 	{
 		assertEquals("Returned the wrong value.", 
 				Integer.valueOf(42), 
-				proc.process(new TypedNoDefault(), "42").value);
+				proc.process(new TypedNoDefault(), Locale.getDefault(), "42").value);
 	}
 	
 	/**
@@ -48,7 +50,7 @@ public class TestSingleNonOptionArguments extends Assert
 	@Test(expected=OptionException.class)
 	public void testTypedNoDefaultPassTwoValuesNotAllowed() throws Exception
 	{
-		proc.process(new TypedNoDefault(), "42", "43");
+		proc.process(new TypedNoDefault(), Locale.getDefault(), "42", "43");
 	}
 	
 	/**
@@ -60,7 +62,7 @@ public class TestSingleNonOptionArguments extends Assert
 	{
 		assertEquals("No default and value not defined; expected 'null.'", 
 				null, 
-				proc.process(new TypedNoDefault()).value);
+				proc.process(new TypedNoDefault(), Locale.getDefault()).value);
 	}
 	
 	/**
@@ -70,7 +72,7 @@ public class TestSingleNonOptionArguments extends Assert
 	@Test(expected=OptionException.class) 
 	public void testTypedNoDefaultBadConversion() throws Exception
 	{
-		proc.process(new TypedNoDefault(), "wont-convert-to-integer");
+		proc.process(new TypedNoDefault(), Locale.getDefault(), "wont-convert-to-integer");
 	}
 	
 	/**
@@ -95,7 +97,7 @@ public class TestSingleNonOptionArguments extends Assert
 	{
 		assertEquals("Returned the wrong value.", 
 				Integer.valueOf(42), 
-				proc.process(new TypedWithDefault(), "42").value);
+				proc.process(new TypedWithDefault(), Locale.getDefault(), "42").value);
 	}
 	
 	/**
@@ -106,7 +108,7 @@ public class TestSingleNonOptionArguments extends Assert
 	@Test(expected=OptionException.class)
 	public void testTypedWithDefaultPassTwoValuesNotAllowed() throws Exception
 	{
-		proc.process(new TypedWithDefault(), "42", "43");
+		proc.process(new TypedWithDefault(), Locale.getDefault(), "42", "43");
 	}
 	
 	/**
@@ -120,7 +122,7 @@ public class TestSingleNonOptionArguments extends Assert
 	{
 		assertEquals("Didn't return the expected default value.", 
 				Integer.valueOf(256),
-				proc.process(new TypedWithDefault()).value);
+				proc.process(new TypedWithDefault(), Locale.getDefault()).value);
 	}
 	
 	/**
@@ -130,7 +132,7 @@ public class TestSingleNonOptionArguments extends Assert
 	@Test(expected=OptionException.class) 
 	public void testTypedWithDefaultBadConversion() throws Exception
 	{
-		proc.process(new TypedWithDefault(), "wont-convert-to-integer");
+		proc.process(new TypedWithDefault(), Locale.getDefault(), "wont-convert-to-integer");
 	}
 	
 	/**
@@ -152,7 +154,7 @@ public class TestSingleNonOptionArguments extends Assert
 	{
 		assertEquals("Value did not parse as expected.",
 				Integer.valueOf(42),
-				proc.process(new Required(), "42").value);
+				proc.process(new Required(), Locale.getDefault(), "42").value);
 	}
 	
 	/**
@@ -162,7 +164,7 @@ public class TestSingleNonOptionArguments extends Assert
 	@Test(expected=OptionException.class)
 	public void testRequiredFailsIfNoValue() throws Exception
 	{
-		proc.process(new Required());
+		proc.process(new Required(), Locale.getDefault());
 	}
 	
 	/**
@@ -172,7 +174,7 @@ public class TestSingleNonOptionArguments extends Assert
 	@Test(expected=OptionException.class)
 	public void testRequiredFailsOnMultipleValues() throws Exception
 	{
-		proc.process(new Required(), "42", "43");
+		proc.process(new Required(), Locale.getDefault(), "42", "43");
 	}
 	
 	/**
@@ -195,7 +197,7 @@ public class TestSingleNonOptionArguments extends Assert
 	{
 		assertEquals("Returned the wrong value.", 
 				42, 
-				proc.process(new Primitive(), "42").value);
+				proc.process(new Primitive(), Locale.getDefault(), "42").value);
 	}
 	
 	/**
@@ -206,7 +208,7 @@ public class TestSingleNonOptionArguments extends Assert
 	@Test(expected=OptionException.class)
 	public void testPrimitivePassTwoValuesNotAllowed() throws Exception
 	{
-		proc.process(new Primitive(), "42", "43");
+		proc.process(new Primitive(), Locale.getDefault(), "42", "43");
 	}
 	
 	/**
@@ -220,7 +222,7 @@ public class TestSingleNonOptionArguments extends Assert
 	{
 		assertEquals("Didn't return the expected default value.", 
 				256, 
-				proc.process(new Primitive()).value);
+				proc.process(new Primitive(), Locale.getDefault()).value);
 	}
 	
 	/**
@@ -230,7 +232,7 @@ public class TestSingleNonOptionArguments extends Assert
 	@Test(expected=OptionException.class) 
 	public void testBadConversion() throws Exception
 	{
-		proc.process(new Primitive(), "wont-convert-to-int");
+		proc.process(new Primitive(), Locale.getDefault(), "wont-convert-to-int");
 	}
 	
 	
@@ -257,7 +259,7 @@ public class TestSingleNonOptionArguments extends Assert
 	{
 		assertEquals("Wrong value.", 
 				true, 
-				proc.process(new BooleanParam(), "--test").test);
+				proc.process(new BooleanParam(), Locale.getDefault(), "--test").test);
 	}
 	
 	/**
@@ -269,7 +271,7 @@ public class TestSingleNonOptionArguments extends Assert
 	{
 		assertEquals("Wrong value.", 
 				false, 
-				proc.process(new BooleanParam()).test);
+				proc.process(new BooleanParam(), Locale.getDefault()).test);
 	}
 	
 	/**
@@ -281,7 +283,7 @@ public class TestSingleNonOptionArguments extends Assert
 	{
 		assertEquals("Wrong value.", 
 				true, 
-				proc.process(new BooleanParam(), "--test", "--test").test);
+				proc.process(new BooleanParam(), Locale.getDefault(), "--test", "--test").test);
 	}
 	
 	/**
@@ -291,6 +293,6 @@ public class TestSingleNonOptionArguments extends Assert
 	@Test(expected=OptionException.class)
 	public void testIllegalOption() throws Exception
 	{
-		proc.process(new BooleanParam(), "--illegal-option");
+		proc.process(new BooleanParam(), Locale.getDefault(), "--illegal-option");
 	}
 }
