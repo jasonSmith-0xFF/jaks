@@ -4,13 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
-
-import com.googlecode.jaks.common.i18n.Strings;
 
 import joptsimple.OptionParser;
+
+import com.googlecode.jaks.common.l10n.Strings;
 
 /**
  * The abstract, base command class which concrete commands must extend.
@@ -139,33 +137,9 @@ public abstract class AbstractJaksCommand
 	 */
 	public String format(final String template, final Object... values) throws IOException
 	{
-		final Map<String,String> strings = Strings.getStrings(getClass(), getLocale());
-		final Map<String,Object> vars = new HashMap<>();
-		vars.putAll(strings);
-		vars.put("object", this);
-		return String.format(getLocale(), Strings.evalTemplate(template, vars), values);
+		return Strings.format(this, getLocale(), template, values);
 	}
 	
-	/**
-	 * Long form of {@link #format(String, Object...)} for use with classes external to a command.
-	 * @param object The object used as a reference when searching for localization data.
-	 * <tt>object</tt> is the currently running command instance.
-	 * Localization strings are available by name. Ex., <tt>@{MSG_COMMAND_NAME}</tt> will find
-	 * the property value "MSG_COMMAND_NAME" from the localization data.
-	 * @param template MVEL2 template or literal string.
-	 * @param locale The locale.
-	 * @param values Values passed in to be formatted.
-	 * @return The formatted text.
-	 * @throws IOException See {@link IOException}.
-	 */
-	public static String format(final Object object, final String template, final Locale locale, final Object... values) throws IOException
-	{
-		final Map<String,String> strings = Strings.getStrings(object.getClass(), locale);
-		final Map<String,Object> vars = new HashMap<>();
-		vars.putAll(strings);
-		vars.put("object", object);
-		return String.format(locale, Strings.evalTemplate(template, vars), values);
-	}
 	
 	/**
 	 * Keeps track of the first command executed (normally there is only ever one); can be used as a reference object.

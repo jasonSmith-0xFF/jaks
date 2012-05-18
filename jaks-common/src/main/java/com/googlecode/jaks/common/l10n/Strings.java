@@ -1,4 +1,4 @@
-package com.googlecode.jaks.common.i18n;
+package com.googlecode.jaks.common.l10n;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +22,45 @@ public class Strings
 	private static Map<Class<?>,Map<String,Map<String,String>>> cachedStrings = new HashMap<>();
 	
 	private static Map<String,Map<String,String>> cachedResults = new HashMap<>();
+	
+	/**
+	 * Format using a template.
+	 * @param object The object used as a reference when searching for localization data.
+	 * <tt>object</tt> is the currently running command instance.
+	 * Localization strings are available by name. Ex., <tt>@{MSG_COMMAND_NAME}</tt> will find
+	 * the property value "MSG_COMMAND_NAME" from the localization data.
+	 * @param template MVEL2 template or literal string.
+	 * @param locale The locale.
+	 * @param values Values passed in to be formatted.
+	 * @return The formatted text.
+	 * @throws IOException See {@link IOException}.
+	 */
+	public static String format(final Object object, final Locale locale, final String template, final Object... values) throws IOException
+	{
+		final Map<String,String> strings = Strings.getStrings(object.getClass(), locale);
+		final Map<String,Object> vars = new HashMap<>();
+		vars.putAll(strings);
+		vars.put("object", object);
+		return String.format(locale, Strings.evalTemplate(template, vars), values);
+	}
+	
+	/**
+	 * Format using a template.
+	 * @param object The object used as a reference when searching for localization data.
+	 * <tt>object</tt> is the currently running command instance.
+	 * Localization strings are available by name. Ex., <tt>@{MSG_COMMAND_NAME}</tt> will find
+	 * the property value "MSG_COMMAND_NAME" from the localization data.
+	 * @param template MVEL2 template or literal string.
+	 * @param values Values passed in to be formatted.
+	 * @return The formatted text.
+	 * @throws IOException See {@link IOException}.
+	 */
+	public static String format(final Object object, final String template, final Object... values) throws IOException
+	{
+		return format(object, Locale.getDefault(), template, values);
+	}
+
+
 
 	public synchronized static Map<String,String> getStrings(final Class<?> clazz, final Locale locale) throws IOException
 	{
