@@ -53,7 +53,7 @@ public class OptionProcessor
 	 */
 	public <T> T process(final T command, final Locale locale, final String... args) throws Exception
 	{
-		initializeCommand(command, initializeOptionParser(command, locale).parse(args));
+		initializeCommand(command, initializeOptionParser(command, locale).parse(args), locale);
 		return command;
 	}
 	
@@ -77,12 +77,18 @@ public class OptionProcessor
 				Map<String,Object> vars = new HashMap<>();
 				vars.put("strings", strings);
 				vars.put("command", command);
+				
+				List<String> optionNames = new ArrayList<>();
+				for(final String name : option.name())
+				{
+					optionNames.add(Strings.evalTemplate(name, vars));
+				}
 
 				initializeAnOption(
 						command, 
 						optionParser, 
 						field, 
-						option.name(), 
+						optionNames, 
 						Strings.evalTemplate(option.description(), vars), 
 						option.separator(), 
 						option.required());
@@ -96,12 +102,12 @@ public class OptionProcessor
 			final Object command,
 			final OptionParser optionParser, 
 			final Field field, 
-			final String[] optionName, 
+			final List<String> optionName, 
 			final String optionDescription,
 			final char optionSeparator,
 			final boolean optionIsRequired)
 	{
-		final OptionSpecBuilder builder = optionParser.acceptsAll(Arrays.asList(optionName), optionDescription);
+		final OptionSpecBuilder builder = optionParser.acceptsAll(optionName, optionDescription);
 		if(!BOOLEAN_CLASSES.contains(field.getType()))
 		{
 			Class<?> type = field.getType();
@@ -201,14 +207,25 @@ public class OptionProcessor
 	 * @param optionSet The set of options created by parsing a set of command-line arguments.
 	 * @throws Exception See {@link Exception}.
 	 */
-	public void initializeCommand(final Object command, final OptionSet optionSet) throws Exception
+	public void initializeCommand(final Object command, final OptionSet optionSet, final Locale locale) throws Exception
 	{
+		Map<String,String> strings = Strings.getStrings(command.getClass(), locale);
 		for(final Field field : command.getClass().getFields())
 		{
 			final JaksOption option = field.getAnnotation(JaksOption.class);
 			if(option != null)
 			{
-				processOptionAnnotation(command, field, optionSet, option.name());
+				Map<String,Object> vars = new HashMap<>();
+				vars.put("strings", strings);
+				vars.put("command", command);
+				
+				List<String> optionNames = new ArrayList<>();
+				for(final String name : option.name())
+				{
+					optionNames.add(Strings.evalTemplate(name, vars));
+				}
+
+				processOptionAnnotation(command, field, optionSet, optionNames);
 			}
 			else
 			{
@@ -225,12 +242,12 @@ public class OptionProcessor
 			final Object command, 
 			final Field field, 
 			final OptionSet optionSet, 
-			final String[] optionName) throws IllegalArgumentException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException, SecurityException
+			final List<String> optionName) throws IllegalArgumentException, IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException, SecurityException
 	{
 		if(BOOLEAN_CLASSES.contains(field.getType()))
 		{
 			field.setAccessible(true);
-			if(optionSet.has(optionName[0]))
+			if(optionSet.has(optionName.get(0)))
 			{
 				field.set(command, true);
 			}
@@ -244,7 +261,7 @@ public class OptionProcessor
 			field.setAccessible(true);
 			if(field.getType().isArray())
 			{
-				final List<?> values = optionSet.valuesOf(optionName[0]);
+				final List<?> values = optionSet.valuesOf(optionName.get(0));
 				final Object array = Array.newInstance(field.getType().getComponentType(), values.size());
 				for(int i=0; i<values.size(); i++)
 				{
@@ -254,7 +271,7 @@ public class OptionProcessor
 			}
 			else if(Collection.class.isAssignableFrom(field.getType()))
 			{
-				final List<?> values = optionSet.valuesOf(optionName[0]);
+				final List<?> values = optionSet.valuesOf(optionName.get(0));
 				if(field.getType().isInterface())
 				{
 					if(List.class.isAssignableFrom(field.getType()))
@@ -277,7 +294,7 @@ public class OptionProcessor
 			}
 			else
 			{
-				field.set(command, optionSet.valueOf(optionName[0]));
+				field.set(command, optionSet.valueOf(optionName.get(0)));
 			}
 		}
 	}
@@ -294,7 +311,7 @@ public class OptionProcessor
 		final JaksNonOption nonOption = field.getAnnotation(JaksNonOption.class);
 		
 		final OptionParser fakeParser = new OptionParser();
-		initializeAnOption(command, fakeParser, field, new String[]{"option"}, "This is a fake option", '\u0000', nonOption.required());
+		initializeAnOption(command, fakeParser, field, Arrays.asList("option"), "This is a fake option.", '\u0000', nonOption.required());
 		
 		final List<String> fakeArgs = new ArrayList<String>();
 		for(final String arg : optionSet.nonOptionArguments())
@@ -304,6 +321,6 @@ public class OptionProcessor
 		}
 		
 		final OptionSet fakeOptionSet = fakeParser.parse(fakeArgs.toArray(new String[fakeArgs.size()]));
-		processOptionAnnotation(command, field, fakeOptionSet, new String[]{"option"});
+		processOptionAnnotation(command, field, fakeOptionSet, Arrays.asList("option"));
 	}
 }
