@@ -29,7 +29,7 @@ public class Transcode extends AbstractJaksCommand
 		{
 			if(!asList("avi", "mod", "mpeg").contains(getExtension(vid.getName())))
 			{
-				throw new IllegalArgumentException(vid.getPath() + " is not a convertable file type.");
+				throw new IllegalArgumentException(format("@{ERR_NOT_A_CONVERTIBLE_TYPE}", vid.getPath()));
 			}
 			
 			if(!vid.isFile())

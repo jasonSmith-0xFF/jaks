@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
+
+import com.googlecode.jaks.common.i18n.Strings;
 
 import joptsimple.OptionParser;
 
@@ -15,10 +19,12 @@ import joptsimple.OptionParser;
 @JaksCommand
 public abstract class AbstractJaksCommand 
 {
+	private static AbstractJaksCommand primaryCommand = null;
+	
 	/**
 	 * If set, errors will show the full stack trace and not just a summary.
 	 */
-	@JaksOption(name = {"e", "@{strings['CMD_VERBOSE_ERRORS']}"},description="@{strings['DESC_VERBOSE_ERRORS']}")
+	@JaksOption(name = {"e", "@{CMD_VERBOSE_ERRORS}"},description="@{DESC_VERBOSE_ERRORS}")
 	public boolean verboseErrors = false;
 	
 	/**
@@ -46,6 +52,10 @@ public abstract class AbstractJaksCommand
 	 */
 	public void startCommand(final String... args)
 	{
+		if(primaryCommand == null)
+		{
+			primaryCommand = this;
+		}
 		try
 		{
 			if(args.length > 0 && Arrays.asList("-h", "--help").contains(args[0]))
@@ -90,7 +100,7 @@ public abstract class AbstractJaksCommand
 	 * returns {@link Locale#getDefault()}.
 	 * @return The locale to be used for internationalization.
 	 */
-	protected Locale getLocale()
+	public Locale getLocale()
 	{
 		return Locale.getDefault();
 	}
@@ -112,8 +122,57 @@ public abstract class AbstractJaksCommand
 	 * Get the full path to the script file this command was launched from.
 	 * @return The full path to the script file.
 	 */
-	protected File getLaunchScript()
+	public File getLaunchScript()
 	{
 		return new File(System.getProperty("jaks.launch.script"));
+	}
+	
+	/**
+	 * Short form of {@link String#format(Locale, String, Object...)} where the template
+	 * is processed by the MVEL2 template engine. <tt>object</tt> is the currently running command instance.
+	 * Localization strings are available by name. Ex., <tt>@{MSG_COMMAND_NAME}</tt> will find
+	 * the property value "MSG_COMMAND_NAME" from the localization data.
+	 * @param template MVEL2 template or literal string.
+	 * @param values Values passed in to be formatted.
+	 * @return The formatted text.
+	 * @throws IOException See {@link IOException}.
+	 */
+	public String format(final String template, final Object... values) throws IOException
+	{
+		final Map<String,String> strings = Strings.getStrings(getClass(), getLocale());
+		final Map<String,Object> vars = new HashMap<>();
+		vars.putAll(strings);
+		vars.put("object", this);
+		return String.format(getLocale(), Strings.evalTemplate(template, vars), values);
+	}
+	
+	/**
+	 * Long form of {@link #format(String, Object...)} for use with classes external to a command.
+	 * @param object The object used as a reference when searching for localization data.
+	 * <tt>object</tt> is the currently running command instance.
+	 * Localization strings are available by name. Ex., <tt>@{MSG_COMMAND_NAME}</tt> will find
+	 * the property value "MSG_COMMAND_NAME" from the localization data.
+	 * @param template MVEL2 template or literal string.
+	 * @param locale The locale.
+	 * @param values Values passed in to be formatted.
+	 * @return The formatted text.
+	 * @throws IOException See {@link IOException}.
+	 */
+	public static String format(final Object object, final String template, final Locale locale, final Object... values) throws IOException
+	{
+		final Map<String,String> strings = Strings.getStrings(object.getClass(), locale);
+		final Map<String,Object> vars = new HashMap<>();
+		vars.putAll(strings);
+		vars.put("object", object);
+		return String.format(locale, Strings.evalTemplate(template, vars), values);
+	}
+	
+	/**
+	 * Keeps track of the first command executed (normally there is only ever one); can be used as a reference object.
+	 * @return The first command executed.
+	 */
+	public static AbstractJaksCommand getPrimaryCommand()
+	{
+		return primaryCommand;
 	}
 }

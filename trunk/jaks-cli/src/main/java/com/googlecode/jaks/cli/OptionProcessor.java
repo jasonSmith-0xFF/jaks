@@ -75,8 +75,8 @@ public class OptionProcessor
 			if(option != null)
 			{
 				Map<String,Object> vars = new HashMap<>();
-				vars.put("strings", strings);
-				vars.put("command", command);
+				vars.putAll(strings);
+				vars.put("object", command);
 				
 				List<String> optionNames = new ArrayList<>();
 				for(final String name : option.name())
@@ -216,8 +216,8 @@ public class OptionProcessor
 			if(option != null)
 			{
 				Map<String,Object> vars = new HashMap<>();
-				vars.put("strings", strings);
-				vars.put("command", command);
+				vars.putAll(strings);
+				vars.put("object", command);
 				
 				List<String> optionNames = new ArrayList<>();
 				for(final String name : option.name())
