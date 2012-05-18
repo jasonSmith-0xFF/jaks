@@ -18,7 +18,7 @@ public abstract class AbstractJaksCommand
 	/**
 	 * If set, errors will show the full stack trace and not just a summary.
 	 */
-	@JaksOption(name = {"e", "verbose-errors"},description="@{strings['DESC_VERBOSE_ERRORS']}")
+	@JaksOption(name = {"e", "@{strings['CMD_VERBOSE_ERRORS']}"},description="@{strings['DESC_VERBOSE_ERRORS']}")
 	public boolean verboseErrors = false;
 	
 	/**
