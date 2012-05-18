@@ -16,6 +16,7 @@
  */
 package com.googlecode.jaks.cli;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -24,11 +25,15 @@ import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 import com.googlecode.jaks.common.SquashedException;
+import com.googlecode.jaks.common.i18n.Strings;
 
 import joptsimple.ArgumentAcceptingOptionSpec;
 import joptsimple.OptionParser;
@@ -46,9 +51,9 @@ public class OptionProcessor
 	 * @return The command instance.
 	 * @throws Exception See {@link Exception}.
 	 */
-	public <T> T process(final T command, final String... args) throws Exception
+	public <T> T process(final T command, final Locale locale, final String... args) throws Exception
 	{
-		initializeCommand(command, initializeOptionParser(command).parse(args));
+		initializeCommand(command, initializeOptionParser(command, locale).parse(args));
 		return command;
 	}
 	
@@ -56,18 +61,31 @@ public class OptionProcessor
 	 * Initialize an option parser with the annotations from the {@code command} instance.
 	 * @param command The command class.
 	 * @return The option parser.
+	 * @throws IOException  See {@link Strings#getStrings(Class, Locale)}.
 	 */
-	public OptionParser initializeOptionParser(final Object command)
+	public OptionParser initializeOptionParser(final Object command, final Locale locale) throws IOException
 	{
 		final OptionParser optionParser = new OptionParser();
 		optionParser.posixlyCorrect(false);
 		
+		Map<String,String> strings = Strings.getStrings(command.getClass(), locale);
 		for(final Field field : command.getClass().getFields())
 		{
 			final JaksOption option = field.getAnnotation(JaksOption.class);
 			if(option != null)
 			{
-				initializeAnOption(command, optionParser, field, option.name(), option.description(), option.separator(), option.required());
+				Map<String,Object> vars = new HashMap<>();
+				vars.put("strings", strings);
+				vars.put("command", command);
+
+				initializeAnOption(
+						command, 
+						optionParser, 
+						field, 
+						option.name(), 
+						Strings.evalTemplate(option.description(), vars), 
+						option.separator(), 
+						option.required());
 			}
 		}
 		

@@ -18,7 +18,7 @@ public abstract class AbstractJaksCommand
 	/**
 	 * If set, errors will show the full stack trace and not just a summary.
 	 */
-	@JaksOption(name = {"e", "verbose-errors"},description="Errors show full stack trace.")
+	@JaksOption(name = {"e", "verbose-errors"},description="@{strings['DESC_VERBOSE_ERRORS']}")
 	public boolean verboseErrors = false;
 	
 	/**
@@ -54,7 +54,7 @@ public abstract class AbstractJaksCommand
 			}
 			else
 			{
-				new OptionProcessor().process(this, args);
+				new OptionProcessor().process(this, getLocale(), args);
 				execute();
 			}
 		}
@@ -86,13 +86,23 @@ public abstract class AbstractJaksCommand
 	}
 	
 	/**
+	 * Return the locale to be used for internationalization. The default implementation
+	 * returns {@link Locale#getDefault()}.
+	 * @return The locale to be used for internationalization.
+	 */
+	protected Locale getLocale()
+	{
+		return Locale.getDefault();
+	}
+	
+	/**
 	 * Print help for this command.
 	 * @param proc The option-processor.
 	 * @throws IOException See {@link IOException}.
 	 */
 	protected void printHelp() throws IOException
 	{
-		final OptionParser parser = new OptionProcessor().initializeOptionParser(this);
+		final OptionParser parser = new OptionProcessor().initializeOptionParser(this, getLocale());
 		System.out.println(getCommandName() + " [options]");
 		System.out.println();
 		parser.printHelpOn(System.out);
