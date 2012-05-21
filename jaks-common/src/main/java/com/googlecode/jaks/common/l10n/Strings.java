@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Properties;
 
+import org.apache.commons.collections.map.ReferenceMap;
 import org.mvel2.templates.TemplateRuntime;
 
 import com.googlecode.jaks.common.SquashedException;
@@ -19,9 +20,16 @@ import com.googlecode.jaks.common.io.StreamUtil;
 
 public class Strings 
 {
-	private static Map<Class<?>,Map<String,Map<String,String>>> cachedStrings = new HashMap<>();
+	/**
+	 * The string results for a single language or language+country combination.
+	 */
+	@SuppressWarnings("unchecked")
+	private static final Map<Class<?>,Map<String,Map<String,String>>> cachedStrings = new ReferenceMap();
 	
-	private static Map<String,Map<String,String>> cachedResults = new HashMap<>();
+	/**
+	 * The combined results of language+country, language, and <tt>eng</tt>
+	 */
+	private static final Map<Class<?>,Map<Locale,Map<String,String>>> cachedResults = new HashMap<>();
 	
 	/**
 	 * Format using a template.
@@ -36,7 +44,7 @@ public class Strings
 	 * @throws IOException See {@link IOException}.
 	 */
 	public static String format(final Object object, final Locale locale, final String template, final Object... values) throws IOException
-	{
+	{ 
 		final Map<String,String> strings = Strings.getStrings(object.getClass(), locale);
 		final Map<String,Object> vars = new HashMap<>();
 		vars.putAll(strings);
@@ -61,7 +69,15 @@ public class Strings
 	}
 
 
-
+	/**
+	 * Given a class, returns all the localization strings associated with that class for the specified locale.
+	 * Strings are prioritized first by language+country, then by language-only. Defaults to plain english (code <tt>eng</tt>)
+	 * if the string is not defined for a given locale.
+	 * @param clazz The associated class.
+	 * @param locale The locale.
+	 * @return The mapping of locale-specific strings.
+	 * @throws IOException See {@link IOException}.
+	 */
 	public synchronized static Map<String,String> getStrings(final Class<?> clazz, final Locale locale) throws IOException
 	{
 		String lang;
@@ -84,10 +100,9 @@ public class Strings
 			country = null;
 		}
 		
-		final String localeKey = lang + "_" + country;
-		if(cachedResults.containsKey(localeKey))
+		if(cachedResults.containsKey(clazz) && cachedResults.get(clazz).containsKey(locale))
 		{
-			return cachedResults.get(localeKey);
+			return cachedResults.get(clazz).get(locale);
 		}
 		else
 		{
@@ -103,13 +118,24 @@ public class Strings
 				results.putAll(getStrings(clazz, lang + "_" + country));
 			}
 			
-			cachedResults.put(localeKey, Collections.unmodifiableMap(results));
+			if(!cachedResults.containsKey(clazz))
+			{
+				cachedResults.put(clazz, new HashMap<Locale,Map<String,String>>());
+			}
+			cachedResults.get(clazz).put(locale, Collections.unmodifiableMap(results));
 			
-			return cachedResults.get(localeKey);
+			return cachedResults.get(clazz).get(locale);
 		}
 	}
 	
-	private static Map<String,String> getStrings(final Class<?> clazz, final String locale) throws IOException
+	/**
+	 * Get the localized strings for a single locale/country combination.
+	 * @param clazz The reference class.
+	 * @param locale The locale.
+	 * @return The localized strings.
+	 * @throws IOException See {@link IOException}.
+	 */
+	private synchronized static Map<String,String> getStrings(final Class<?> clazz, final String locale) throws IOException
 	{
 		if(clazz == null)
 		{
@@ -121,13 +147,14 @@ public class Strings
 			throw new IllegalArgumentException("Locale not specified.");
 		}
 		
-		if(cachedStrings.containsKey(clazz) && cachedStrings.get(clazz).containsKey(locale))
+		final Map<String,Map<String,String>> classMapping = cachedStrings.get(clazz);
+		if(classMapping != null && classMapping.containsKey(locale))
 		{
-			return cachedStrings.get(clazz).get(locale);
+			return classMapping.get(locale);
 		}
 		else
 		{
-			Map<String,String> results = new HashMap<String,String>();
+			final Map<String,String> results = new HashMap<String,String>();
 			
 			for(final Class<?> interfaze : clazz.getInterfaces())
 			{
@@ -165,16 +192,25 @@ public class Strings
 				results.put(key==null?"":(String)key, evalTemplate(properties.getProperty((String)key), vars));
 			}
 			
+			Map<String,Map<String,String>> newClassMapping = new HashMap<String,Map<String,String>>();
 			if(!cachedStrings.containsKey(clazz))
 			{
-				cachedStrings.put(clazz, new HashMap<String,Map<String,String>>());
+				cachedStrings.put(clazz, newClassMapping);
 			}
-			cachedStrings.get(clazz).put(locale, Collections.unmodifiableMap(results));
+			newClassMapping.put(locale, Collections.unmodifiableMap(results));
 			
-			return cachedStrings.get(clazz).get(locale);
+			return newClassMapping.get(locale);
 		}
 	}
 	
+	/**
+	 * Return the localization properties for a single class, non-recursive. If there are no properties defined,
+	 * this will return an empty properties object instance.
+	 * @param clazz The reference class.
+	 * @param locale The locale.
+	 * @return The properties for reference object.
+	 * @throws IOException See {@link IOException}.
+	 */
 	private static Properties getProperties(final Class<?> clazz, final String locale) throws IOException
 	{
 		final String propPath = clazz.getName().replace(".", "/") + "." + locale + ".properties";
@@ -194,6 +230,12 @@ public class Strings
 		return properties;
 	}
 	
+	/**
+	 * Evaluate an MVEL template with the given variables as arguments.
+	 * @param template The string MVEL template.
+	 * @param vars The variables.
+	 * @return The result of evaluating the template.
+	 */
 	public static String evalTemplate(final String template, final Map<String,?> vars)
 	{
 		return (String)TemplateRuntime.eval(template, vars);
