@@ -47,6 +47,21 @@ public class Sha1OutputStream extends OutputStream
 		return sha1Hash;
 	}
 	
+	public String getSha1HashString()
+	{
+		StringBuilder s = new StringBuilder();
+		for(final byte b : getSha1Hash())
+		{
+			int i = (int)b & 0xff;
+			if(i <= 0xf)
+			{
+				s.append("0");
+			}
+			s.append(Integer.toHexString(i));
+		}
+		return s.toString();
+	}
+	
 	@Override
 	public void write(int b) throws IOException 
 	{
