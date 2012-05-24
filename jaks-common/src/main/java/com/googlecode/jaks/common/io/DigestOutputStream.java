@@ -23,18 +23,35 @@ import java.security.NoSuchAlgorithmException;
 
 import com.googlecode.jaks.common.SquashedException;
 
-public class Sha1OutputStream extends OutputStream
+/**
+ * An output stream whose result is the message digest of the data written to it.
+ * @see MessageDigest
+ * @see StreamUtil#transfer(java.io.InputStream, OutputStream)
+ * @see MultiOutputStream
+ * @author Jason Smith
+ */
+public class DigestOutputStream extends OutputStream
 {
 	private final MessageDigest digest;
 
-	private byte[] sha1Hash = null;
+	private byte[] result = null;
 	
-	public Sha1OutputStream() throws NoSuchAlgorithmException
+	/**
+	 * Constructor.
+	 * @param algorithm The algorithm, such as <tt>MD5</tt> (128 bits), <tt>SHA-1</tt> (160 bits), or <tt>SHA-256</tt> (256 bits).
+	 *             Refer to the documentation for {@link MessageDigest} for more information.
+	 * @throws NoSuchAlgorithmException See {@link NoSuchAlgorithmException}.
+	 */
+	public DigestOutputStream(final String algorithm) throws NoSuchAlgorithmException
 	{
-		digest = MessageDigest.getInstance("SHA-1");
+		digest = MessageDigest.getInstance(algorithm);
 	}
 	
-	public byte[] getSha1Hash()
+	/**
+	 * Return the digest, closing the stream if necessary.
+	 * @return The digest.
+	 */
+	public byte[] getDigest()
 	{
 		try
 		{
@@ -44,13 +61,17 @@ public class Sha1OutputStream extends OutputStream
 		{
 			return SquashedException.raise(e);
 		}
-		return sha1Hash;
+		return result;
 	}
 	
-	public String getSha1HashString()
+	/**
+	 * Return the digest as a hexadecimal-encoded string, closing the stream if necessary.
+	 * @return The digest as a hexadecimal-encoded string.
+	 */
+	public String getDigestString()
 	{
 		StringBuilder s = new StringBuilder();
-		for(final byte b : getSha1Hash())
+		for(final byte b : getDigest())
 		{
 			int i = (int)b & 0xff;
 			if(i <= 0xf)
@@ -65,7 +86,7 @@ public class Sha1OutputStream extends OutputStream
 	@Override
 	public void write(int b) throws IOException 
 	{
-		if(sha1Hash != null)
+		if(result != null)
 		{
 			throw new IllegalStateException("Stream closed.");
 		}
@@ -75,17 +96,17 @@ public class Sha1OutputStream extends OutputStream
 	@Override
 	public void close() throws IOException 
 	{
-		if(sha1Hash == null)
+		if(result == null)
 		{
 			super.close();
-			sha1Hash = digest.digest();
+			result = digest.digest();
 		}
 	}
 
 	@Override
 	public void write(byte[] b, int off, int len) throws IOException 
 	{
-		if(sha1Hash != null)
+		if(result != null)
 		{
 			throw new IllegalStateException("Stream closed.");
 		}
@@ -95,7 +116,7 @@ public class Sha1OutputStream extends OutputStream
 	@Override
 	public void write(byte[] b) throws IOException 
 	{
-		if(sha1Hash != null)
+		if(result != null)
 		{
 			throw new IllegalStateException("Stream closed.");
 		}
