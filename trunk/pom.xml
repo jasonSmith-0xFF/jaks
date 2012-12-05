@@ -146,9 +146,9 @@
 						</goals>
 						<configuration>
 							<rules>
-								<requireMavenVersion>
+								<!-- <requireMavenVersion>
 									<version>3.0.4</version>
-								</requireMavenVersion>
+								</requireMavenVersion> -->
 								<requireJavaVersion>
 									<version>1.7.0</version>
 								</requireJavaVersion>
