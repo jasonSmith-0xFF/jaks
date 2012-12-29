@@ -68,7 +68,7 @@ public abstract class AbstractJaksMojo extends AbstractMojo
 		
 		for(final Artifact artifact : (Set<Artifact>)project.getArtifacts())
 		{
-			if("jar".equals(artifact.getType()) && !artifact.hasClassifier() && "compile".equals(artifact.getScope()))
+			if("jar".equals(artifact.getType()) && "compile".equals(artifact.getScope()))
 			{
 				results.add(artifact);
 			}
