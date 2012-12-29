@@ -16,6 +16,7 @@
  */
 package com.googlecode.jaks.maven;
 
+import static com.googlecode.jaks.common.util.StringUtil.isEmpty;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
@@ -101,7 +102,15 @@ public class AssembleMojo extends AbstractJaksMojo
 			nodes.add(new Folder(libFolder));
 			for(final Artifact artifact : getCompileArtifacts())
 			{
-				nodes.add(new FileResource(libFolder + "/" + artifact.getArtifactId() + "-" + artifact.getVersion() + ".jar", artifact.getFile()));
+				
+				final String classifier = artifact.getClassifier();
+				nodes.add(
+						new FileResource(
+								libFolder + "/" + 
+								artifact.getArtifactId() + 
+								"-" + artifact.getVersion() + 
+								(isEmpty(classifier) ? "" : "-"+classifier) +
+								".jar", artifact.getFile()));
 			}
 			
 			for(final String type : new LinkedHashSet<String>(types))

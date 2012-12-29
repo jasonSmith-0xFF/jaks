@@ -35,7 +35,7 @@ public class GenerateBashScriptsMojo extends AbstractGenerateScriptsMojo
 				"    -Dmaven.groupId=" + quote(project.getGroupId()) + " \\\n" +
 				"    -Dmaven.artifactId=" + quote(project.getArtifactId()) + " \\\n" +
 				"    -Dmaven.version=" + quote(project.getVersion()) + "\\\n" +
-				"    -Djaks.ui.cols=$(tput cols || echo 0) \\\n" +
+				"    -Djaks.ui.cols=$(tput cols 2> /dev/null || echo 0) \\\n" +
 				"    -Djaks.launch.script=$(dirname $0)/$(basename $0) \\\n" +
 				"    -Djaks.command.class=" + commandClass.getName() + " \\\n" + 
 				"    " + launcher.getName() + " \\\n" +
