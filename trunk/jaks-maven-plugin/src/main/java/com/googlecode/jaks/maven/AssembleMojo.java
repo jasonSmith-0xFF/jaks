@@ -102,7 +102,6 @@ public class AssembleMojo extends AbstractJaksMojo
 			nodes.add(new Folder(libFolder));
 			for(final Artifact artifact : getCompileArtifacts())
 			{
-				
 				final String classifier = artifact.getClassifier();
 				nodes.add(
 						new FileResource(

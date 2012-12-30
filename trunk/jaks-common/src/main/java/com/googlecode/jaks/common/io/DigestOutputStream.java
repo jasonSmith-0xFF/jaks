@@ -32,6 +32,9 @@ import com.googlecode.jaks.common.SquashedException;
  */
 public class DigestOutputStream extends OutputStream
 {
+	public final static String MD5 = "MD5";
+	public final static String SHA1 = "SHA-1";
+	
 	private final MessageDigest digest;
 
 	private byte[] result = null;
