@@ -33,7 +33,6 @@ public class TarArchiver extends AbstractArchiver
 {
 	private final TarOutputStream out;
 	
-	
 	public TarArchiver(final OutputStream out)
 	{
 		this(out, new UnixModeGuesser());
